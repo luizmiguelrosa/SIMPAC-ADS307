@@ -97,8 +97,19 @@
 
         <main class="py-4 mt-5">
             @if (session('status'))
-                <div class="alert alert-{{ session('status') }} position-fixed top-1 end-0 mt-3 me-3" role="alert">
+                <div id="alert-box" class="alert alert-{{ session('status') }} position-fixed top-1 end-0 mt-3 me-3 z-1" role="alert">
                     {{ session('message') }}
+
+                    <script>
+                        document.addEventListener('DOMContentLoaded', function () {
+                            setTimeout(function () {
+                                var alertBox = document.getElementById('alert-box');
+                                if (alertBox) {
+                                    alertBox.remove();
+                                }
+                            }, 5000);
+                        });
+                    </script>
                 </div>
             @endif
             @yield('content')

@@ -31,7 +31,7 @@ Route::middleware(['auth', 'user-access:admin'])->group(function () {
   
     Route::get('/admin/home', [HomeController::class, 'adminHome'])->name('admin.home');
     Route::match(['get', 'post'], '/symposium/start', [SymposiumController::class, 'startSymposium'])->name('symposium.start');
-    Route::post('/symposium/end', [SymposiumController::class, 'endSymposium'])->name('symposium.end');
+    Route::match(['get', 'post'], '/symposium/end', [SymposiumController::class, 'endSymposium'])->name('symposium.end');
 });
   
 /*------------------------------------------

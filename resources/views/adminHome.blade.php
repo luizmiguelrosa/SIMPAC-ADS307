@@ -5,8 +5,6 @@
     <div class="row justify-content-center">
         <div class="col-md-12">
             <div class="card">
-                
-
                 <div class="card-body">
                     <h2 class="text-center">Você é um Usuário Administrador.</h2>
 
@@ -17,8 +15,7 @@
                         </form>
 
                         <!-- Botão para Finalizar Simpósio (Futura Implementação) -->
-                         <form action="{{ route('symposium.end') }}" method="POST" id="symposium.end">
-
+                         <form action="{{ route('symposium.end') }}" method="GET"  class="d-block mx-auto">
                             <button type="submit" class="btn btn-primary btn-custom d-block mx-auto fw-bold">FINALIZAR SIMPÓSIO</button>
                          </form>
                     </div>
