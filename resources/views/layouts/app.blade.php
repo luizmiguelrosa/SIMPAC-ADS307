@@ -77,7 +77,7 @@
                                     <ul class="dropdown-menu">
                                         <li><a class="dropdown-item" href="#">Perguntas</a></li>
                                         <li><a class="dropdown-item" href="#">Modelo Avaliativo</a></li>
-                                        <li><a class="dropdown-item" href="#">Cursos</a></li>
+                                        <li><a class="dropdown-item" href="{{ route('courses.index') }}">Cursos</a></li>
                                     </ul>
                                 </li>
                                 <li class="nav-item">
