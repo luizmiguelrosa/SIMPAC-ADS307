@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Course;
 use App\Models\Work;
+use App\Models\Symposium; 
 
 class WorkController extends Controller
 {
@@ -15,9 +16,10 @@ class WorkController extends Controller
          // Buscar todos os cursos do banco de dados
          $courses = Course::all();
  
+         $symposiums = Symposium::all(); // Recupera todas as edições de simpósio
          // Retornar a view com os cursos
-         return view('create-work', compact('courses'));
-     }
+         return view('create-work', compact('courses','symposiums'));
+        }
  
      // Armazenar o novo trabalho no banco de dados
      public function store(Request $request)
@@ -26,6 +28,7 @@ class WorkController extends Controller
          $validated = $request->validate([
              'protocol' => 'required|string|max:255',
              'course_id' => 'required|exists:courses,id',
+             'symposium_id' => 'required|exists:symposium,id',
          ]);
  
          // Criação do novo trabalho
