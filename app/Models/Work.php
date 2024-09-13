@@ -15,4 +15,8 @@ class Work extends Model
     {
         return $this->belongsTo(Course::class);
     }
+    public function evaluators()
+    {
+        return $this->belongsToMany(User::class, 'work_evaluator'); // Ajuste conforme o nome da tabela de relacionamento
+    }
 }

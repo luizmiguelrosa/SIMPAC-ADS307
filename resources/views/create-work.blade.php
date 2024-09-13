@@ -1,3 +1,5 @@
+<!-- resources/views/create-work.blade.php -->
+
 @extends('layouts.app')
 
 @section('content')
@@ -42,16 +44,18 @@
             @enderror
         </div>
 
-        <!-- Campo de seleção de simpósio -->
+        <!-- Campo de seleção de avaliadores -->
         <div class="form-group">
-            <label for="symposium_id">Symposium</label>
-            <select class="form-control @error('symposium_id') is-invalid @enderror" id="symposium_id" name="symposium_id" required>
-                <option value="">Select a symposium</option>
-                @foreach($symposiums as $symposium) <!-- Corrigido para usar $symposiums -->
-                    <option value="{{ $symposium->id }}">{{ $symposium->edition }}</option>
-                @endforeach
-            </select>
-            @error('symposium_id')
+            <label for="evaluators">Select Evaluators</label><br>
+            @foreach($evaluators as $evaluator)
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="evaluators[]" value="{{ $evaluator->id }}" id="evaluator{{ $evaluator->id }}">
+                    <label class="form-check-label" for="evaluator{{ $evaluator->id }}">
+                        {{ $evaluator->name }}
+                    </label>
+                </div>
+            @endforeach
+            @error('evaluators')
                 <div class="invalid-feedback">
                     {{ $message }}
                 </div>
