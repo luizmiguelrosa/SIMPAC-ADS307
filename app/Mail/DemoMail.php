@@ -29,7 +29,7 @@ class DemoMail extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Demo Mail',
+            subject: 'Sua Conta de Avaliador Foi Criada',  // Modificar o assunto
         );
     }
   
@@ -39,7 +39,7 @@ class DemoMail extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'emails.demoMail'
+            view: 'emails.demoMail'  // Certifique-se de que essa view existe
         );
     }
   

@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\WorkController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\MailController;
-
+use App\Http\Controllers\EvaluatorController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -54,6 +54,14 @@ Route::middleware(['auth', 'user-access:admin'])->group(function () {
     Route::put('/courses/{course}', [CourseController::class, 'update'])->name('courses.update');
     // Excluir um curso
     Route::delete('/courses/{course}', [CourseController::class, 'destroy'])->name('courses.destroy');
+  
+    //Rotas para crud de avaliador:
+    Route::get('evaluators', [EvaluatorController::class, 'index'])->name('evaluators.index');
+    Route::get('evaluators/create', [EvaluatorController::class, 'create'])->name('evaluators.create');
+    Route::post('evaluators', [EvaluatorController::class, 'store'])->name('evaluators.store');
+    Route::get('evaluators/{id}/edit', [EvaluatorController::class, 'edit'])->name('evaluators.edit');
+    Route::put('evaluators/{id}', [EvaluatorController::class, 'update'])->name('evaluators.update');
+    Route::delete('evaluators/{id}', [EvaluatorController::class, 'destroy'])->name('evaluators.destroy');
   
 });
   

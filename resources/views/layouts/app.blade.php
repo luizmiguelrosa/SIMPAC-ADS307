@@ -61,8 +61,11 @@
                                         Avaliadores
                                     </a>
                                     <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item" href="#">Cadastrar</a></li>
-                                        <li><a class="dropdown-item" href="#">Visualizar</a></li>
+                                         <!-- Link para a página de criação de avaliadores -->
+                                        <li><a class="dropdown-item" href="{{ route('evaluators.create') }}">Cadastrar</a></li>
+                                        
+                                        <!-- Link para a página que lista todos os avaliadores -->
+                                        <li><a class="dropdown-item" href="{{ route('evaluators.index') }}">Visualizar</a></li>
                                         <li><a class="dropdown-item" href="#">Atualizar</a></li>
                                         <li>
                                             <hr class="dropdown-divider">
