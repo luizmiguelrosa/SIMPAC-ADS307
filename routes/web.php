@@ -9,6 +9,7 @@ use App\Http\Controllers\WorkController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\MailController;
 use App\Http\Controllers\EvaluatorController;
+use App\Http\Controllers\EvaluativeModelController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -62,6 +63,15 @@ Route::middleware(['auth', 'user-access:admin'])->group(function () {
     Route::get('evaluators/{id}/edit', [EvaluatorController::class, 'edit'])->name('evaluators.edit');
     Route::put('evaluators/{id}', [EvaluatorController::class, 'update'])->name('evaluators.update');
     Route::delete('evaluators/{id}', [EvaluatorController::class, 'destroy'])->name('evaluators.destroy');
+
+    // Rotas para CRUD de modelos avaliativos
+    Route::get('/evaluative-models', [EvaluativeModelController::class, 'index'])->name('evaluative_models.index');
+    Route::get('/evaluative-models/create', [EvaluativeModelController::class, 'create'])->name('evaluative_models.create');
+    Route::post('/evaluative-models', [EvaluativeModelController::class, 'store'])->name('evaluative_models.store');
+    Route::get('/evaluative-models/{evaluativeModel}/edit', [EvaluativeModelController::class, 'edit'])->name('evaluative_models.edit');
+    Route::put('/evaluative-models/{evaluativeModel}', [EvaluativeModelController::class, 'update'])->name('evaluative_models.update');
+    Route::delete('/evaluative-models/{evaluativeModel}', [EvaluativeModelController::class, 'destroy'])->name('evaluative_models.destroy');
+
   
 });
   

@@ -7,6 +7,7 @@ use App\Models\Course;
 use App\Models\Work;
 use App\Models\User;
 use App\Models\Symposium; 
+use App\Models\EvaluativeModel; 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
@@ -14,12 +15,13 @@ class WorkController extends Controller
 {
     public function create()
     {
-        // Obtém todos os cursos e simpósios ativos
+        // Obtém todos os cursos e simpósios ativos e modelo avaliativo
         $courses = Course::all();
         $symposiums = Symposium::whereNull('end_date')->get(); // Simpósios sem data de término
         $evaluators = User::where('type', 2)->get(); // Obtém todos os managers
+        $evaluativeModels = EvaluativeModel::all(); //Pega os modelos
     
-        return view('create-work', compact('courses', 'symposiums', 'evaluators'));
+        return view('create-work', compact('courses', 'symposiums', 'evaluators', 'evaluativeModels'));
     }
 
     public function store(Request $request)

@@ -45,6 +45,23 @@
                 @enderror
             </div>
 
+            <!-- Campo de seleção de Modelo Avaliativo -->
+<div class="form-group mb-3">
+    <label for="evaluative_model_id">Modelo Avaliativo</label>
+    <select class="form-control @error('evaluative_model_id') is-invalid @enderror" id="evaluative_model_id" name="evaluative_model_id" required>
+        <option value="">Selecionar Modelo Avaliativo</option>
+        @foreach($evaluativeModels as $evaluativeModel)
+            <option value="{{ $evaluativeModel->id }}">{{ $evaluativeModel->model_name }}</option>
+        @endforeach
+    </select>
+    @error('evaluative_model_id')
+        <div class="invalid-feedback">
+            {{ $message }}
+        </div>
+    @enderror
+</div>
+
+
             <!-- Campo de seleção de avaliadores com multiselect aprimorado -->
 <div class="form-group mb-3">
     <label for="evaluatorsDropdown" class="form-label">Avaliadores</label>

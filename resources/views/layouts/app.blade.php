@@ -37,7 +37,7 @@
                         <div class="offcanvas-body">
                             <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
                                 <li class="nav-item">
-                                    <a class="nav-link" aria-current="page" href="#">Inicio</a>
+                                    <a class="nav-link" aria-current="page" href="{{ route('admin.home') }}">Inicio</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="#">Resultados</a>
@@ -79,7 +79,7 @@
                                     </a>
                                     <ul class="dropdown-menu">
                                         <li><a class="dropdown-item" href="#">Perguntas</a></li>
-                                        <li><a class="dropdown-item" href="#">Modelo Avaliativo</a></li>
+                                        <li><a class="dropdown-item" href="{{ route('evaluative_models.index') }}">Modelo Avaliativo</a></li>
                                         <li><a class="dropdown-item" href="{{ route('courses.index') }}">Cursos</a></li>
                                     </ul>
                                 </li>
