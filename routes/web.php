@@ -7,11 +7,16 @@ use App\Http\Controllers\SymposiumController;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\WorkController;
 use App\Http\Controllers\CourseController;
+use App\Http\Controllers\MailController;
 
 
 Route::get('/', function () {
     return view('welcome');
 });
+
+//rota para o email
+Route::get('send-mail', [MailController::class, 'index']);
+
 
 Auth::routes();
 
