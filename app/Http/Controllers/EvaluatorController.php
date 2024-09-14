@@ -31,27 +31,30 @@ class EvaluatorController extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|email|unique:users,email',
-            //'password' => 'required|string|min:6|confirmed', comentado para enviar forms
         ]);
-
+    
+        // Gerar senha aleatória
+        $randomPassword = mt_rand(1000, 9999);
+        $hashedPassword = Hash::make($randomPassword);
+    
         // Cria o avaliador no banco de dados
         $evaluator = User::create([
             'name' => $request->input('name'),
             'email' => $request->input('email'),
-            'password' => Hash::make($request->input('password')),
+            'password' => $hashedPassword,
             'type' => 2, // Define o tipo como manager (2)
         ]);
-
+    
         // Dados para enviar no e-mail
         $mailData = [
             'name' => $request->input('name'),
             'email' => $request->input('email'),
-            'password' => $request->input('password') // Envia a senha original (sem hash) para o e-mail
+            'password' => $randomPassword // Envia a senha original (sem hash) para o e-mail
         ];
-
+    
         // Envia o e-mail ao avaliador criado
         Mail::to($evaluator->email)->send(new DemoMail($mailData));
-
+    
         // Redireciona para a página de lista de avaliadores
         return redirect()->route('evaluators.index')->with('success', 'Avaliador criado e e-mail enviado com sucesso!');
     }
@@ -71,7 +74,7 @@ class EvaluatorController extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|email|unique:users,email,' . $id,
-            'password' => 'nullable|string|min:6|confirmed',
+           //'password' => 'nullable|string|min:6|confirmed',
         ]);
 
         $evaluator->name = $request->input('name');
