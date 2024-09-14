@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Work extends Model
 {
-    protected $fillable = ['protocol', 'course_id'];
+    protected $fillable = ['protocol', 'course_id', 'evaluative_model_id'];
 
     // Definir o relacionamento com Course
     public function course()
