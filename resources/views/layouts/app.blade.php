@@ -135,6 +135,30 @@
             width: 1.5em;
             height: 1.5em;
         }
+        html, body {
+    height: 100%;
+    margin: 0;
+}
+/* CSS para footer ficar ao final do conteudo */
+#app {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+main {
+    flex: 1; /* O conteúdo principal se expande para ocupar o espaço disponível */
+}
+
+footer {
+    background-color: #f8f9fa;
+    padding: 20px;
+    text-align: center;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
+
     </style>
 </body>
 </html>
