@@ -15,6 +15,10 @@
                     @endif
 
                     <h2>You are a Manager User.</h2>
+
+                    <a href="{{ route('manager.works') }}" class="btn btn-primary">
+            Ver Trabalhos Disponíveis para Avaliação
+        </a>
                 </div>
             </div>
         </div>

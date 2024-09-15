@@ -83,6 +83,15 @@ All Evaluetor Routes List Trocar nomemclatura depois
 Route::middleware(['auth', 'user-access:manager'])->group(function () {
   
     Route::get('/manager/home', [HomeController::class, 'managerHome'])->name('manager.home');
+
+ // Rotas para visualizar trabalhos disponíveis para avaliação
+ Route::get('/manager/works', [WorkController::class, 'managerWorks'])->name('manager.works');
+
+ // Outras rotas relacionadas a trabalhos que o manager pode realizar
+ Route::get('/manager/works/{work}', [WorkController::class, 'show'])->name('manager.work.show');
+ Route::post('/manager/works/{work}/evaluate', [WorkController::class, 'evaluate'])->name('manager.work.evaluate');
+
+
 });
 
 

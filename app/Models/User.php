@@ -59,4 +59,9 @@ class User extends Authenticatable
             get: fn ($value) =>  ["user", "admin", "manager"][$value],
         );
     }
+
+    public function works()
+{
+    return $this->belongsToMany(Work::class, 'work_evaluator');
+}
 }

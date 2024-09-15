@@ -6,7 +6,7 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-body">
-                    <h2 class="text-center">Você é um Usuário Administrador.</h2>
+                   <!-- <h2 class="text-center">Bem vindo.</h2>-->
 
                     <div class="contador-simposio mt-4">
                         <!-- Formulário para Iniciar Simpósio -->
