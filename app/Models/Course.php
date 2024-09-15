@@ -19,4 +19,12 @@ class Course extends Model
 
     // Caso você use timestamps e queira personalizá-los ou desativá-los
     public $timestamps = true;
+
+    // ---------------------------
+
+    public function works()
+    {
+        return $this->hasMany(Work::class);
+    }
+
 }

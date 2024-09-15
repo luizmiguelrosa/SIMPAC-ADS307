@@ -57,22 +57,22 @@ class WorkController extends Controller
     // ---------------------------------PARTE DE AVALIADORES---------------------------------------
     //  método que irá buscar os trabalhos que o usuário pode avaliar e passar esses dados para a view.
     public function managerWorks()
-{
-    $userId = Auth::id(); // Obtém o ID do usuário autenticado
-
-    // Verifica o ID do usuário
-  //  dd($userId);
-
-    // Obtém todos os trabalhos associados ao avaliador
-    $works = Work::whereHas('evaluators', function ($query) use ($userId) {
-        $query->where('user_id', $userId);
-    })->get();
-
-    // Verifica o resultado da consulta
-//dd($works);
-
-    return view('manager.works', compact('works'));
-}
+    {
+        $userId = Auth::id(); // Obtém o ID do usuário autenticado
+    
+        // Carrega as relações com eager loading
+        $works = Work::with('course', 'evaluative_model')
+                     ->whereHas('evaluators', function ($query) use ($userId) {
+                         $query->where('user_id', $userId);
+                     })
+                     ->get();
+    
+        // Dump para verificar os resultados
+       // dd($works);
+    
+        return view('manager.works', compact('works'));
+    }
+    
 
 
     //--------------------------------------------------------------------

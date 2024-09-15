@@ -13,4 +13,10 @@ class EvaluativeModel extends Model
     protected $fillable = ['model_name'];
 
     public $timestamps = true;
+
+    // -------------------------------
+    public function works()
+{
+    return $this->hasMany(Work::class);
+}
 }

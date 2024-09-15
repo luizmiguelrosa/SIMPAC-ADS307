@@ -22,6 +22,9 @@
                     @foreach ($works as $work)
                         <tr>
                             <td>{{ $work->protocol }}</td>
+                            <td>{{ $work->course->course_name ?? 'Não disponível' }}</td> <!--Cuidado com o nome q tá no banco de dados, tipo course_name-->
+                            <td> {{ $work->evaluative_model->model_name ?? 'Não disponível' }}</td> 
+                            <td> {{ $work->evaluative_model->edition ?? 'Não disponível' }}</td> 
 <!--Ainda está dificil ler as variaveis -->
                             
                         </tr>
