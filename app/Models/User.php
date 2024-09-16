@@ -59,4 +59,9 @@ class User extends Authenticatable
             get: fn ($value) =>  ["user", "admin", "manager"][$value],
         );
     }
+
+    public function hasRole($role)
+    {
+        return $this->type === $role; // Ajuste conforme sua lógica de role
+    }
 }

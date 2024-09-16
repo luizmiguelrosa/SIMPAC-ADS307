@@ -10,14 +10,10 @@
 
                     <div class="contador-simposio mt-4">
                         <!-- Formulário para Iniciar Simpósio -->
-                        <form action="{{ route('symposium.start') }}" method="GET" class="d-block mx-auto">
-                            <button type="submit" class="btn btn-primary btn-custom fw-bold">INICIAR SIMPÓSIO</button>
-                        </form>
+                        <a href="{{ route('symposium.start') }}" class="d-block mx-auto btn btn-primary btn-custom fw-bold">INICIAR SIMPÓSIO</a>
 
                         <!-- Botão para Finalizar Simpósio (Futura Implementação) -->
-                         <form action="{{ route('symposium.end') }}" method="GET"  class="d-block mx-auto">
-                            <button type="submit" class="btn btn-primary btn-custom d-block mx-auto fw-bold">FINALIZAR SIMPÓSIO</button>
-                         </form>
+                        <a href="{{ route('symposium.end') }}" class="d-block mx-auto btn btn-primary btn-custom fw-bold">FINALIZAR SIMPÓSIO</a>
                     </div>
 
                     <a href="{{ route('admin.create-work') }}" class="btn btn-primary btn-custom d-block mx-auto mt-3 fw-bold">NOVO TRABALHO</a>

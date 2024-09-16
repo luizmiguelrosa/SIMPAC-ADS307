@@ -5,12 +5,6 @@
     <h1>Cursos</h1>
     <a href="{{ route('courses.create') }}" class="btn btn-primary mb-3">Adicionar Novo Curso</a>
 
-    @if(session('success'))
-        <div class="alert alert-success">
-            {{ session('success') }}
-        </div>
-    @endif
-
     <table class="table table-striped">
         <thead>
             <tr>

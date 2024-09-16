@@ -5,12 +5,6 @@
     <h1>Modelos Avaliativos</h1>
     <a href="{{ route('evaluative_models.create') }}" class="btn btn-primary mb-3">Adicionar Novo Modelo Avaliativo</a>
 
-    @if(session('success'))
-        <div class="alert alert-success">
-            {{ session('success') }}
-        </div>
-    @endif
-
     <table class="table table-striped">
         <thead>
             <tr>

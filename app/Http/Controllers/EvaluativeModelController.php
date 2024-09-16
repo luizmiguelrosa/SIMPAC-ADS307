@@ -10,12 +10,12 @@ class EvaluativeModelController extends Controller
     public function index()
     {
         $evaluativeModels = EvaluativeModel::all();
-        return view('evaluative_models.index', compact('evaluativeModels'));
+        return view('admin/evaluative_models.index', compact('evaluativeModels'));
     }
 
     public function create()
     {
-        return view('evaluative_models.create');
+        return view('admin/evaluative_models.create');
     }
 
     public function store(Request $request)
@@ -26,12 +26,12 @@ class EvaluativeModelController extends Controller
 
         EvaluativeModel::create($request->all());
 
-        return redirect()->route('evaluative_models.index')->with('success', 'Evaluative Model created successfully.');
+        return redirect()->route('evaluative_models.index')->with(['status' => 'success', 'message' => 'Modelo Avaliativo criado com sucesso!']);
     }
 
     public function edit(EvaluativeModel $evaluativeModel)
     {
-        return view('evaluative_models.edit', compact('evaluativeModel'));
+        return view('admin/evaluative_models.edit', compact('evaluativeModel'));
     }
 
     public function update(Request $request, EvaluativeModel $evaluativeModel)
@@ -42,12 +42,12 @@ class EvaluativeModelController extends Controller
 
         $evaluativeModel->update($request->all());
 
-        return redirect()->route('evaluative_models.index')->with('success', 'Evaluative Model updated successfully.');
+        return redirect()->route('evaluative_models.index')->with(['status' => 'success', 'message' => 'Modelo Avaliativo atualizado com sucesso!']);
     }
 
     public function destroy(EvaluativeModel $evaluativeModel)
     {
         $evaluativeModel->delete();
-        return redirect()->route('evaluative_models.index')->with('success', 'Evaluative Model deleted successfully.');
+        return redirect()->route('evaluative_models.index')->with(['status' => 'success', 'message' => 'Modelo Avaliativo removido com sucesso!']);
     }
 }

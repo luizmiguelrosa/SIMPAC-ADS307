@@ -7,13 +7,6 @@
     <div class="col-md-8">
         <h1 class="text-center mb-4">Criar Novo Trabalho</h1>
 
-        <!-- Mensagem de sucesso -->
-        @if(session('success'))
-            <div class="alert alert-success">
-                {{ session('success') }}
-            </div>
-        @endif
-
         <!-- Formulário -->
         <form action="{{ route('admin.store-work') }}" method="POST">
             @csrf

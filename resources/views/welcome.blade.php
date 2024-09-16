@@ -32,7 +32,7 @@
             @auth
                 <a href="{{ route('admin.home') }}" class="btn btn-primary btn-custom d-block mx-auto fw-bold">ADMIN</a>
                 <br>
-                <a href="{{ route('home') }}" class="btn btn-primary btn-custom d-block mx-auto fw-bold">AVALIADOR</a>
+                <a href="{{ route('manager.home') }}" class="btn btn-primary btn-custom d-block mx-auto fw-bold">AVALIADOR</a>
                 <br>
                 <a href="{{ route('home') }}" class="btn btn-primary btn-custom d-block mx-auto fw-bold">RESUMOS APROVADOS</a>
                 <br>

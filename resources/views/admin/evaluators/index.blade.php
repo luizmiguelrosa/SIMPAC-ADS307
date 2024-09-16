@@ -7,12 +7,6 @@
     <h1>Avaliadores</h1>
     <a href="{{ route('evaluators.create') }}" class="btn btn-primary mb-3">Adicionar Avaliador</a>
 
-    @if(session('success'))
-        <div class="alert alert-success">
-            {{ session('success') }}
-        </div>
-    @endif
-
     <table class="table table-striped">
         <thead>
             <tr>

@@ -10,12 +10,12 @@ class CourseController extends Controller
     public function index()
     {
         $courses = Course::all();
-        return view('courses.index', compact('courses'));
+        return view('admin/courses.index', compact('courses'));
     }
 
     public function create()
     {
-        return view('courses.create');
+        return view('admin/courses.create');
     }
 
     public function store(Request $request)
@@ -27,12 +27,12 @@ class CourseController extends Controller
 
         Course::create($request->all());
 
-        return redirect()->route('courses.index')->with('success', 'Course created successfully.');
+        return redirect()->route('courses.index')->with(['status' => 'success', 'message' => 'Curso criado com sucesso!']);
     }
 
     public function edit(Course $course)
     {
-        return view('courses.edit', compact('course'));
+        return view('admin/courses.edit', compact('course'));
     }
 
     public function update(Request $request, Course $course)
@@ -44,12 +44,12 @@ class CourseController extends Controller
 
         $course->update($request->all());
 
-        return redirect()->route('courses.index')->with('success', 'Course updated successfully.');
+        return redirect()->route('courses.index')->with(['status' => 'success', 'message' => 'Curso atualizado com sucesso!']);
     }
 
     public function destroy(Course $course)
     {
         $course->delete();
-        return redirect()->route('courses.index')->with('success', 'Course deleted successfully.');
+        return redirect()->route('courses.index')->with(['status' => 'success', 'message' => 'Curso removido com sucesso!']);
     }
 }
