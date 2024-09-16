@@ -14,8 +14,9 @@
     <table class="table table-striped">
         <thead>
             <tr>
-                <th>Name</th>
-                <th>Actions</th>
+                <th>Nome</th>
+                <th>Quantidade de Perguntas</th> <!-- Nova coluna para quantidade de perguntas -->
+                <th>Ações</th>
             </tr>
         </thead>
         <tbody>
@@ -38,7 +39,7 @@
 
 <script>
     function confirmDelete(modelName) {
-        return confirm(`Are you sure you want to delete the evaluative model "${modelName}"?`);
+        return confirm(`Tem certeza de que deseja excluir o modelo avaliativo "${modelName}"?`);
     }
 </script>
 @endsection

@@ -10,6 +10,7 @@ use App\Http\Controllers\CourseController;
 use App\Http\Controllers\MailController;
 use App\Http\Controllers\EvaluatorController;
 use App\Http\Controllers\EvaluativeModelController;
+use App\Http\Controllers\QuestionController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -72,7 +73,15 @@ Route::middleware(['auth', 'user-access:admin'])->group(function () {
     Route::put('/evaluative-models/{evaluativeModel}', [EvaluativeModelController::class, 'update'])->name('evaluative_models.update');
     Route::delete('/evaluative-models/{evaluativeModel}', [EvaluativeModelController::class, 'destroy'])->name('evaluative_models.destroy');
 
-  
+    // Rotas para CRUD de perguntas
+// Rota para criar perguntas
+Route::get('/questions/create', [QuestionController::class, 'create'])
+    ->name('questions.create');
+    // Rota para armazenar as perguntas no banco de dados
+Route::post('/questions/store', [QuestionController::class, 'store'])
+->name('questions.store');
+
+
 });
   
 /*------------------------------------------

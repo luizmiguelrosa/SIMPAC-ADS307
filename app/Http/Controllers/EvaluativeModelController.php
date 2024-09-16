@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\EvaluativeModel;
+use App\Models\Question;
 
 class EvaluativeModelController extends Controller
 {
@@ -12,23 +13,28 @@ class EvaluativeModelController extends Controller
         $evaluativeModels = EvaluativeModel::all();
         return view('evaluative_models.index', compact('evaluativeModels'));
     }
-
+//---------------------------------------------------------------------------
     public function create()
     {
         return view('evaluative_models.create');
     }
+//----------------------------------------------------------------------------
+public function store(Request $request)
+{
+    // Validação do nome do modelo avaliativo
+    $request->validate([
+        'model_name' => 'required|string|max:255',
+    ]);
 
-    public function store(Request $request)
-    {
-        $request->validate([
-            'model_name' => 'required|string|max:255',
-        ]);
+    // Criação do modelo avaliativo
+    $evaluativeModel = EvaluativeModel::create([
+        'model_name' => $request->input('model_name'),
+    ]);
 
-        EvaluativeModel::create($request->all());
-
-        return redirect()->route('evaluative_models.index')->with('success', 'Evaluative Model created successfully.');
-    }
-
+    // Redireciona para a página de criação de perguntas sem passar ID
+    return redirect()->route('questions.create')->with('success', 'Modelo avaliativo criado com sucesso. Agora adicione as perguntas.');
+}
+//------------------------------------------------------------------------------------------------------------
     public function edit(EvaluativeModel $evaluativeModel)
     {
         return view('evaluative_models.edit', compact('evaluativeModel'));
@@ -36,18 +42,7 @@ class EvaluativeModelController extends Controller
 
     public function update(Request $request, EvaluativeModel $evaluativeModel)
     {
-        $request->validate([
-            'model_name' => 'required|string|max:255',
-        ]);
+      
 
-        $evaluativeModel->update($request->all());
-
-        return redirect()->route('evaluative_models.index')->with('success', 'Evaluative Model updated successfully.');
-    }
-
-    public function destroy(EvaluativeModel $evaluativeModel)
-    {
-        $evaluativeModel->delete();
-        return redirect()->route('evaluative_models.index')->with('success', 'Evaluative Model deleted successfully.');
-    }
+}
 }
