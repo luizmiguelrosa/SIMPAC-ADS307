@@ -11,12 +11,12 @@ class EvaluativeModelController extends Controller
     public function index()
     {
         $evaluativeModels = EvaluativeModel::all();
-        return view('evaluative_models.index', compact('evaluativeModels'));
+        return view('admin/evaluative_models.index', compact('evaluativeModels'));
     }
 //---------------------------------------------------------------------------
     public function create()
     {
-        return view('evaluative_models.create');
+        return view('admin/evaluative_models.create');
     }
 //----------------------------------------------------------------------------
 public function store(Request $request)
@@ -37,7 +37,7 @@ public function store(Request $request)
 //------------------------------------------------------------------------------------------------------------
     public function edit(EvaluativeModel $evaluativeModel)
     {
-        return view('evaluative_models.edit', compact('evaluativeModel'));
+        return view('admin/evaluative_models.edit', compact('evaluativeModel'));
     }
 
     public function update(Request $request, EvaluativeModel $evaluativeModel)

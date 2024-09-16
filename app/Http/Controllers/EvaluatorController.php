@@ -15,13 +15,13 @@ class EvaluatorController extends Controller
     public function index()
     {
         $evaluators = User::where('type', 2)->get(); // Lista apenas usuários do tipo 2 (manager)
-        return view('evaluators.index', compact('evaluators'));
+        return view('admin/evaluators.index', compact('evaluators'));
     }
 
     // Exibe o formulário de criação de avaliador
     public function create()
     {
-        return view('evaluators.create');
+        return view('admin/evaluators.create');
     }
 
     // Salva um novo avaliador e envia o email
@@ -56,14 +56,14 @@ class EvaluatorController extends Controller
         Mail::to($evaluator->email)->send(new DemoMail($mailData));
     
         // Redireciona para a página de lista de avaliadores
-        return redirect()->route('evaluators.index')->with('success', 'Avaliador criado e e-mail enviado com sucesso!');
-    }
+        return redirect()->route('evaluators.index')->with(['status' => 'success', 'message' => 'Avaliador criado e e-mail enviado com sucesso!']);
+    }   
 
     // Exibe o formulário de edição do avaliador
     public function edit($id)
     {
         $evaluator = User::findOrFail($id);
-        return view('evaluators.edit', compact('evaluator'));
+        return view('admin/evaluators.edit', compact('evaluator'));
     }
 
     // Atualiza os dados de um avaliador
@@ -86,8 +86,8 @@ class EvaluatorController extends Controller
 
         $evaluator->save();
 
-        return redirect()->route('evaluators.index')->with('success', 'Avaliador atualizado com sucesso!');
-    }
+        return redirect()->route('evaluators.index')->with(['status' => 'success', 'message' => 'Avaliador atualizado com sucesso!']);
+    }   
 
     // Exclui um avaliador
     public function destroy($id)
@@ -95,6 +95,6 @@ class EvaluatorController extends Controller
         $evaluator = User::findOrFail($id);
         $evaluator->delete();
 
-        return redirect()->route('evaluators.index')->with('success', 'Avaliador excluído com sucesso!');
+        return redirect()->route('evaluators.index')->with(['status' => 'success', 'message' => 'Avaliador removido com sucesso!']);
     }
 }

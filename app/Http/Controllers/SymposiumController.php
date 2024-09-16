@@ -31,7 +31,7 @@ class SymposiumController extends Controller
     {   
         if (!$this->checkSymposiumProgress()) { // Verificação de Edição em Andamento
             if ($request->method() == 'GET') { // Resposta para quando apertar o botão de iniciar no Menu de Administrador
-                return view('initSymposium');
+                return view('admin/symposium/initSymposium');
 
             } elseif ($request->method() == 'POST') { // Resposta para quando apertar o botão de 'Iniciar Simpósio'
                 $user = Auth::user();
@@ -68,7 +68,7 @@ class SymposiumController extends Controller
     $symposium = $this->checkSymposiumProgress();
     if ($symposium) { // Verificação de Edição em Andamento
         if ($request->method() == 'GET') { // Resposta para quando apertar o botão de finalizar no Menu de Administrador
-            return view('endSymposium');
+            return view('admin/symposium/endSymposium');
         } elseif ($request->method() == 'POST') { // Resposta para quando apertar o botão de 'Finalizar Simpósio'
             $user = Auth::user();
 

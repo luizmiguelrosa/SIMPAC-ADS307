@@ -21,7 +21,7 @@ class WorkController extends Controller
         $evaluators = User::where('type', 2)->get(); // Obtém todos os managers
         $evaluativeModels = EvaluativeModel::all(); //Pega os modelos
     
-        return view('create-work', compact('courses', 'symposiums', 'evaluators', 'evaluativeModels'));
+        return view('admin/works/create-work', compact('courses', 'symposiums', 'evaluators', 'evaluativeModels'));
     }
 
     public function store(Request $request)

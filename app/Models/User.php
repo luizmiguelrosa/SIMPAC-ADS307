@@ -60,6 +60,10 @@ class User extends Authenticatable
         );
     }
 
+    public function hasRole($role)
+    {
+        return $this->type === $role; // Ajuste conforme sua lógica de role
+    }
     public function works()
 {
     return $this->belongsToMany(Work::class, 'work_evaluator');
