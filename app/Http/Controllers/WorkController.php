@@ -54,5 +54,39 @@ class WorkController extends Controller
     
         return redirect()->route('admin.home')->with(['status' => 'success', 'message' => 'Trabalho criado com sucesso!']);
     }
+    // ---------------------------------PARTE DE AVALIADORES---------------------------------------
+    //  método que irá buscar os trabalhos que o usuário pode avaliar e passar esses dados para a view.
+    public function managerWorks()
+{
+    $userId = Auth::id(); // Obtém o ID do usuário autenticado
+
+    // Verifica o ID do usuário
+  //  dd($userId);
+
+    // Obtém todos os trabalhos associados ao avaliador
+    $works = Work::whereHas('evaluators', function ($query) use ($userId) {
+        $query->where('user_id', $userId);
+    })->get();
+
+    // Verifica o resultado da consulta
+//dd($works);
+
+    return view('manager.works', compact('works'));
+}
+
+
+    //--------------------------------------------------------------------
+    public function show(Work $work)
+    {
+        return view('manager.work.show', compact('work'));
+    }
     
+    public function evaluate(Work $work)
+    {
+        // Associa o trabalho ao manager que está avaliando
+        $work->evaluators()->syncWithoutDetaching([Auth::id()]);
+    
+        return redirect()->route('manager.works')->with('success', 'Trabalho avaliado com sucesso!');
+    }
+
 }
