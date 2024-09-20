@@ -19,4 +19,8 @@ class EvaluativeModel extends Model
 {
     return $this->hasMany(Work::class);
 }
+public function questions()
+{
+    return $this->hasMany(Question::class);
+}
 }

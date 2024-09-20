@@ -75,11 +75,17 @@ Route::middleware(['auth', 'user-access:admin'])->group(function () {
 
     // Rotas para CRUD de perguntas
 // Rota para criar perguntas
-Route::get('/questions/create', [QuestionController::class, 'create'])
-    ->name('questions.create');
+//Route::get('/questions/create', [QuestionController::class, 'create'])
+  //  ->name('questions.create');
     // Rota para armazenar as perguntas no banco de dados
-Route::post('/questions/store', [QuestionController::class, 'store'])
-->name('questions.store');
+//Route::post('/questions/store', [QuestionController::class, 'store'])
+//->name('questions.store');
+
+//novas rotas para perguntas
+Route::get('/questions/create', [QuestionController::class, 'create'])->name('questions.create');
+Route::post('/questions', [QuestionController::class, 'store'])->name('questions.store');
+
+
 
 
 });

@@ -8,38 +8,46 @@ use App\Models\EvaluativeModel;
 
 class QuestionController extends Controller
 {
-    public function create()
+    // Método para exibir o formulário de criação de perguntas
+    public function create(Request $request)
     {
-         // Recupera todos os modelos avaliativos
-         $evaluativeModels = EvaluativeModel::all();
-        // Apenas exibe uma página em branco para adicionar perguntas
-        return view('questions.create', compact('evaluativeModels'));
+        $evaluativeModels = EvaluativeModel::all();
+        $numQuestions = $request->get('num_questions', 0); // Quantidade de perguntas dinâmica
+
+        return view('questions.create', compact('evaluativeModels', 'numQuestions'));
     }
-    
-    
+
+    // Método para salvar as perguntas no banco de dados
     public function store(Request $request)
     {
-        // Valida os dados do formulário
-        $request->validate([
+        $validatedData = $request->validate([
             'evaluative_model_id' => 'required|exists:evaluative_models,id',
-            'questions' => 'array|min:1',
-            'questions.*' => 'string|max:255',
+            'questions.*' => 'nullable|string|max:255', // Aceita perguntas nulas
         ]);
 
-        // Recupera o ID do modelo avaliativo
-        $model_id = $request->input('evaluative_model_id');
+        $model = EvaluativeModel::findOrFail($validatedData['evaluative_model_id']);
 
-        // Adiciona as perguntas ao banco de dados
-        foreach ($request->input('questions') as $question_text) {
-            if ($question_text) {
-                Question::create([
-                    'evaluative_model_id' => $model_id,
-                    'question_text' => $question_text,
+        // Loop para inserir perguntas que não estão vazias
+        foreach ($validatedData['questions'] as $questionText) {
+            if (!empty($questionText)) {
+                $model->questions()->create([
+                    'question_text' => $questionText, // Certifique-se de que esse campo exista na tabela de perguntas
                 ]);
             }
         }
 
-        return redirect()->route('questions.create')
-            ->with('success', 'Perguntas adicionadas com sucesso.');
+        return redirect()->route('questions.create')->with('success', 'Perguntas salvas com sucesso!');
     }
+
+    // Método edit comentado por enquanto
+    /*
+    public function edit($evaluative_model_id)
+    {
+        $evaluativeModels = EvaluativeModel::all();
+        $selectedModel = EvaluativeModel::with('questions')->findOrFail($evaluative_model_id);
+        $existingQuestions = $selectedModel->questions;
+
+        return view('questions.create', compact('evaluativeModels', 'selectedModel', 'existingQuestions'));
+    }
+    */
 }

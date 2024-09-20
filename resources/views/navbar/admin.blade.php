@@ -43,7 +43,7 @@
         Configurações Internas
     </a>
     <ul class="dropdown-menu">
-        <li><a class="dropdown-item" href="#">Perguntas</a></li>
+        <li><a class="dropdown-item" href="{{ route('questions.create') }}">Perguntas</a></li>
         <li><a class="dropdown-item" href="{{ route('evaluative_models.index') }}">Modelo Avaliativo</a></li>
         <li><a class="dropdown-item" href="{{ route('courses.index') }}">Cursos</a></li>
     </ul>
