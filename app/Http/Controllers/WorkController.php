@@ -30,6 +30,7 @@ class WorkController extends Controller
     {
         $request->validate([
             'protocol' => 'required|string|max:255',
+            'overview' => 'required|string|max:500', //valida se tem resumo e até 500 caracteres
             'evaluative_model_id' => 'required|exists:evaluative_models,id', // Valida o modelo avaliativo
             'course_id' => 'required|exists:courses,id',
             'evaluators' => 'array', // Aceita um array de IDs
@@ -47,6 +48,7 @@ class WorkController extends Controller
         // Cria o novo trabalho e associa ao simpósio ativo
         $work = new Work();
         $work->protocol = $request->input('protocol');
+        $work->overview = $request->input('overview');
         $work->evaluative_model_id = $request->input('evaluative_model_id'); // Adiciona o modelo avaliativo
         $work->course_id = $request->input('course_id');
         $work->category_id = $request->input('category_id'); // Adiciona a categoria

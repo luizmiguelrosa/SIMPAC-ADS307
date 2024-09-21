@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('works', function (Blueprint $table) {
             $table->id();
             $table->string('protocol');  // Protocolo do trabalho
+            $table->string('overview');  // Resumo ou nomne do trabalho
             $table->foreignId('course_id')->constrained('courses')->onDelete('cascade'); // Chave estrangeira para cursos
             $table->timestamps();
         });

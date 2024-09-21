@@ -21,19 +21,29 @@
                     </div>
                 @enderror
             </div>
+            <!-- Campo de resumo do trabalho -->
+            <div class="form-group mb-3">
+                <label for="protocol">Resumo</label>
+                <input type="text" class="form-control @error('overview') is-invalid @enderror" id="overview" name="overview" value="{{ old('overview') }}" required>
+                @error('overview')
+                    <div class="invalid-feedback">
+                        {{ $message }}
+                    </div>
+                @enderror
+            </div>
            <!-- Campo de seleção de categorias de extensão ou pesquisa -->
-<div class="form-group mb-3">
-    <label for="category_id">Categoria</label>
-    <select class="form-control @error('category_id') is-invalid @enderror" id="category_id" name="category_id" required>
-        <option value="">Selecionar categoria</option>
-        @foreach($categories as $category)
-        <option value="{{ $category->id }}">{{ $category->category_name }}</option>
-        @endforeach
-    </select>
-    @error('category_id')
-        <div class="invalid-feedback">
-            {{ $message }}
-        </div>
+            <div class="form-group mb-3">
+                <label for="category_id">Categoria</label>
+                <select class="form-control @error('category_id') is-invalid @enderror" id="category_id" name="category_id" required>
+                    <option value="">Selecionar categoria</option>
+                    @foreach($categories as $category)
+                    <option value="{{ $category->id }}">{{ $category->category_name }}</option>
+                    @endforeach
+                </select>
+                @error('category_id')
+                    <div class="invalid-feedback">
+                        {{ $message }}
+            </div>
     @enderror
 </div>
 
