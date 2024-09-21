@@ -7,6 +7,7 @@ use App\Models\Course;
 use App\Models\Work;
 use App\Models\User;
 use App\Models\Symposium; 
+use App\Models\Category; 
 use App\Models\EvaluativeModel; 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -15,13 +16,14 @@ class WorkController extends Controller
 {
     public function create()
     {
-        // Obtém todos os cursos e simpósios ativos e modelo avaliativo
+        // Obtém todos os cursos e simpósios ativos e categorias e modelo avaliativo
         $courses = Course::all();
         $symposiums = Symposium::whereNull('end_date')->get(); // Simpósios sem data de término
         $evaluators = User::where('type', 2)->get(); // Obtém todos os managers
         $evaluativeModels = EvaluativeModel::all(); //Pega os modelos
+        $categories = Category::all(); // Carrega todas as categorias
     
-        return view('admin/works/create-work', compact('courses', 'symposiums', 'evaluators', 'evaluativeModels'));
+        return view('admin/works/create-work', compact('courses', 'symposiums', 'evaluators', 'evaluativeModels', 'categories'));
     }
 
     public function store(Request $request)
@@ -32,6 +34,7 @@ class WorkController extends Controller
             'course_id' => 'required|exists:courses,id',
             'evaluators' => 'array', // Aceita um array de IDs
             'evaluators.*' => 'exists:users,id', // Valida que cada ID de avaliador existe na tabela users
+            'category_id' => 'required|exists:categories,id', // Validação da categoria
         ]);
     
         // Encontra o simpósio ativo
@@ -46,6 +49,7 @@ class WorkController extends Controller
         $work->protocol = $request->input('protocol');
         $work->evaluative_model_id = $request->input('evaluative_model_id'); // Adiciona o modelo avaliativo
         $work->course_id = $request->input('course_id');
+        $work->category_id = $request->input('category_id'); // Adiciona a categoria
         $work->symposium_id = $activeSymposium->id; // Associa ao simpósio ativo
         $work->save();
     

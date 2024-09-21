@@ -21,6 +21,21 @@
                     </div>
                 @enderror
             </div>
+           <!-- Campo de seleção de categorias de extensão ou pesquisa -->
+<div class="form-group mb-3">
+    <label for="category_id">Categoria</label>
+    <select class="form-control @error('category_id') is-invalid @enderror" id="category_id" name="category_id" required>
+        <option value="">Selecionar categoria</option>
+        @foreach($categories as $category)
+        <option value="{{ $category->id }}">{{ $category->category_name }}</option>
+        @endforeach
+    </select>
+    @error('category_id')
+        <div class="invalid-feedback">
+            {{ $message }}
+        </div>
+    @enderror
+</div>
 
             <!-- Campo de seleção de curso -->
             <div class="form-group mb-3">

@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Work extends Model
 {
-    protected $fillable = ['protocol', 'course_id', 'evaluative_model_id'];
+    protected $fillable = ['protocol', 'course_id', 'evaluative_model_id','category_id'];
 
     // Relacionamento com Course
     public function course()
@@ -22,6 +22,10 @@ class Work extends Model
     public function evaluative_model()
     {
         return $this->belongsTo(EvaluativeModel::class, 'evaluative_model_id');
+    }
+    public function category()
+    {
+        return $this->belongsTo(Category::class, 'category_id');
     }
     
 }

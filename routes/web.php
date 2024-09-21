@@ -11,6 +11,7 @@ use App\Http\Controllers\MailController;
 use App\Http\Controllers\EvaluatorController;
 use App\Http\Controllers\EvaluativeModelController;
 use App\Http\Controllers\QuestionController;
+use App\Http\Controllers\CategoryController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -86,6 +87,13 @@ Route::get('/questions/create', [QuestionController::class, 'create'])->name('qu
 Route::post('/questions', [QuestionController::class, 'store'])->name('questions.store');
 
 
+// Rotas para CRUD de categorias
+Route::get('/admin/categories', [CategoryController::class, 'index'])->name('categories.index');
+Route::get('/admin/categories/create', [CategoryController::class, 'create'])->name('categories.create');
+Route::post('/admin/categories', [CategoryController::class, 'store'])->name('categories.store');
+Route::get('/admin/categories/{category}/edit', [CategoryController::class, 'edit'])->name('categories.edit');
+Route::put('/admin/categories/{category}', [CategoryController::class, 'update'])->name('categories.update');
+Route::delete('/admin/categories/{category}', [CategoryController::class, 'destroy'])->name('categories.destroy');
 
 
 });
