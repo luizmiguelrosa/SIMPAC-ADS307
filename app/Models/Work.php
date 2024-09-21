@@ -27,5 +27,9 @@ class Work extends Model
     {
         return $this->belongsTo(Category::class, 'category_id');
     }
-    
+    // aqui é sobre a avaliação
+    public function evaluations()
+    {
+        return $this->hasMany(Evaluation::class);
+    }
 }

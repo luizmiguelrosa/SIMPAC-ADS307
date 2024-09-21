@@ -65,7 +65,12 @@ class User extends Authenticatable
         return $this->type === $role; // Ajuste conforme sua lógica de role
     }
     public function works()
-{
-    return $this->belongsToMany(Work::class, 'work_evaluator');
-}
+    {
+        return $this->belongsToMany(Work::class, 'work_evaluator');
+    }
+    public function evaluations()
+    {
+        return $this->hasMany(Evaluation::class);
+    }
+
 }

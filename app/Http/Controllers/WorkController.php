@@ -8,6 +8,7 @@ use App\Models\Work;
 use App\Models\User;
 use App\Models\Symposium; 
 use App\Models\Category; 
+use App\Models\Evaluation; 
 use App\Models\EvaluativeModel; 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -82,17 +83,37 @@ class WorkController extends Controller
 
 
     //--------------------------------------------------------------------
+    // Aqui  começa a parte de avaliar o trabalho
     public function show(Work $work)
     {
         return view('manager.work.show', compact('work'));
     }
     
-    public function evaluate(Work $work)
-    {
-        // Associa o trabalho ao manager que está avaliando
-        $work->evaluators()->syncWithoutDetaching([Auth::id()]);
-    
-        return redirect()->route('manager.works')->with('success', 'Trabalho avaliado com sucesso!');
-    }
+    public function evaluateForm(Work $work)
+{
+    // Carrega as perguntas relacionadas ao modelo avaliativo
+    $questions = $work->evaluative_model->questions; // Certifique-se de que a relação questions está definida no modelo EvaluativeModel
+
+    return view('manager.evaluate', compact('work', 'questions'));
+}
+
+public function storeEvaluation(Request $request, Work $work)
+{
+    $request->validate([
+        'responses' => 'required|array', // Validação para as respostas
+        'responses.*' => 'required|numeric', // Cada resposta deve ser um número
+    ]);
+
+    $evaluation = new Evaluation();
+    $evaluation->work_id = $work->id;
+    $evaluation->evaluator_id = Auth::id(); // Altera para 'user_id' para se alinhar com a estrutura
+    $evaluation->evaluative_model_id = $work->evaluative_model_id; // Associa o modelo avaliativo
+    $evaluation->responses = json_encode($request->responses); // Armazena as respostas em JSON
+    $evaluation->save();
+
+    return redirect()->route('manager.works')->with('success', 'Avaliação armazenada com sucesso!');
+}
+
+
 
 }

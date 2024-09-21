@@ -1,4 +1,3 @@
-<!-- resources/views/manager/works.blade.php -->
 @extends('layouts.app')
 
 @section('content')
@@ -21,10 +20,11 @@
                     @foreach ($works as $work)
                         <tr>
                             <td>{{ $work->protocol }}</td>
-                            <td>{{ $work->course->course_abbreviation ?? 'Não disponível' }}</td> <!-- course_abbreviation   Cuidado com o nome q tá no banco de dados, tipo course_name-->
-                            <td> {{ $work->evaluative_model->model_name ?? 'Não disponível' }}</td> 
-<!--Ainda está dificil ler as variaveis -->
-                            
+                            <td>{{ $work->course->course_abbreviation ?? 'Não disponível' }}</td>
+                            <td>{{ $work->evaluative_model->model_name ?? 'Não disponível' }}</td>
+                            <td>
+                                <a href="{{ route('manager.work.evaluate', $work->id) }}" class="btn btn-primary">Avaliar</a>
+                            </td>
                         </tr>
                     @endforeach
                 </tbody>
