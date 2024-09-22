@@ -21,7 +21,7 @@ class EvaluativeModel extends Model
 }
 public function questions()
 {
-    return $this->hasMany(Question::class);
+    return $this->hasMany(Question::class, 'evaluative_model_id');
 }
 public function evaluations()
 {

@@ -30,3 +30,14 @@
         </div>
     </div>
 </nav>
+
+<style>
+    /* Estilos para a navbar no mobile */
+
+
+/* Adicionar espaçamento abaixo da navbar para o conteúdo */
+body {
+    padding-top: 2%; /* Espaçamento suficiente para que o conteúdo não fique escondido pela navbar */
+}
+
+</style>
