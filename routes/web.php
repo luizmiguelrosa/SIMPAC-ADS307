@@ -95,6 +95,9 @@ Route::get('/admin/categories/{category}/edit', [CategoryController::class, 'edi
 Route::put('/admin/categories/{category}', [CategoryController::class, 'update'])->name('categories.update');
 Route::delete('/admin/categories/{category}', [CategoryController::class, 'destroy'])->name('categories.destroy');
 
+//rota para resultados
+Route::get('/admin/results', [\App\Http\Controllers\ResultController::class, 'index'])->name('admin.results.index');
+
 
 });
   

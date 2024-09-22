@@ -18,7 +18,7 @@
 
                     <a href="{{ route('admin.create-work') }}" class="btn btn-primary btn-custom d-block mx-auto mt-3 fw-bold">NOVO TRABALHO</a>
                     <a href="#" class="btn btn-primary btn-custom d-block mx-auto mt-3 fw-bold">ALTERAR TRABALHO</a>
-                    <a href="#" class="btn btn-primary btn-custom d-block mx-auto mt-3 fw-bold">RESULTADOS</a>
+                    <a href="{{ route('admin.results.index') }}" class="btn btn-primary btn-custom d-block mx-auto mt-3 fw-bold">RESULTADOS</a>
                     <a href="#" class="btn btn-primary btn-custom d-block mx-auto mt-3 fw-bold">AVALIADORES CADASTRADOS</a>
                 </div>
             </div>
