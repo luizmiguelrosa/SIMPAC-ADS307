@@ -15,6 +15,17 @@ use Illuminate\Support\Facades\Hash;
 
 class WorkController extends Controller
 {
+    public function index() {
+        $courses = Course::all();
+        $symposiums = Symposium::whereNull('end_date')->get(); // Simpósios sem data de término
+        $evaluators = User::where('type', 2)->get(); // Obtém todos os managers
+        $evaluativeModels = EvaluativeModel::all(); //Pega os modelos
+        $categories = Category::all(); // Carrega todas as categorias
+        $works = Work::all();
+
+        return view('admin.works.index', compact('courses', 'symposiums', 'evaluators', 'evaluativeModels', 'categories', 'works'));
+    }
+    
     public function create()
     {
         // Obtém todos os cursos e simpósios ativos e categorias e modelo avaliativo

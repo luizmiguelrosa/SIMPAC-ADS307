@@ -45,6 +45,7 @@ Route::middleware(['auth', 'user-access:admin'])->group(function () {
     Route::match(['get', 'post'], '/admin/symposium/end', [SymposiumController::class, 'endSymposium'])->name('symposium.end');
     Route::get('/admin/create-work', [WorkController::class, 'create'])->name('admin.create-work');
     Route::post('/admin/store-work', [WorkController::class, 'store'])->name('admin.store-work'); //não precisa usar o /admin antes pois não estamos usando uma subpasta admin
+    Route::get('/admin/works', [WorkController::class, 'index'])->name('works.index');
     // Rotas para CRUD de cursos
     Route::get('/admin/courses', [CourseController::class, 'index'])->name('courses.index');
     // Formulário para criar novo curso
@@ -83,8 +84,8 @@ Route::middleware(['auth', 'user-access:admin'])->group(function () {
 //->name('questions.store');
 
 //novas rotas para perguntas
-Route::get('/questions/create', [QuestionController::class, 'create'])->name('questions.create');
-Route::post('/questions', [QuestionController::class, 'store'])->name('questions.store');
+Route::get('/admin/questions/create', [QuestionController::class, 'create'])->name('questions.create');
+Route::post('/admin/questions', [QuestionController::class, 'store'])->name('questions.store');
 
 
 // Rotas para CRUD de categorias

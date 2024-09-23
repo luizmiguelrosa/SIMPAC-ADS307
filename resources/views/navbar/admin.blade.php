@@ -13,7 +13,7 @@
     </a>
     <ul class="dropdown-menu">
         <li><a class="dropdown-item" href="{{ route('admin.create-work') }}">Cadastrar</a></li>
-        <li><a class="dropdown-item" href="#">Visualizar</a></li>
+        <li><a class="dropdown-item" href="{{ route('works.index') }}">Visualizar</a></li>
         <li><a class="dropdown-item" href="#">Atualizar</a></li>
         <li>
             <hr class="dropdown-divider">
@@ -46,6 +46,7 @@
         <li><a class="dropdown-item" href="{{ route('questions.create') }}">Perguntas</a></li>
         <li><a class="dropdown-item" href="{{ route('evaluative_models.index') }}">Modelo Avaliativo</a></li>
         <li><a class="dropdown-item" href="{{ route('courses.index') }}">Cursos</a></li>
+        <li><a class="dropdown-item" href="{{ route('categories.index') }}">Categorias</a></li>
     </ul>
 </li>
 @endsection
