@@ -23,7 +23,8 @@
                                     type="number" 
                                     name="responses[{{ $question->id }}]" 
                                     class="form-control" 
-                                    min="0" 
+                                    min="0"
+                                    max="10" 
                                     step="0.1" 
                                     required 
                                     style="max-width: 100px; margin: auto; padding: 8px;"> <!-- Input centralizado -->
