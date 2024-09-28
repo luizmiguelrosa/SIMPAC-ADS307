@@ -46,6 +46,10 @@ Route::middleware(['auth', 'user-access:admin'])->group(function () {
     Route::get('/admin/create-work', [WorkController::class, 'create'])->name('admin.create-work');
     Route::post('/admin/store-work', [WorkController::class, 'store'])->name('admin.store-work'); //não precisa usar o /admin antes pois não estamos usando uma subpasta admin
     Route::get('/admin/works', [WorkController::class, 'index'])->name('works.index');
+    Route::get('/admin/edit-work/{id}', [WorkController::class, 'edit'])->name('admin.edit-work');
+    Route::delete('/admin/delete-work/{id}', [WorkController::class, 'destroy'])->name('admin.delete-work');
+    Route::put('/admin/update-work/{id}', [WorkController::class, 'update'])->name('admin.update-work');
+
     // Rotas para CRUD de cursos
     Route::get('/admin/courses', [CourseController::class, 'index'])->name('courses.index');
     // Formulário para criar novo curso

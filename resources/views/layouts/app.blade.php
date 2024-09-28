@@ -86,6 +86,22 @@ footer {
     bottom: 0;
     width: 100%;
 }
+.btn-custom {
+
+background-color: #205483; 
+
+color: white; 
+
+}
+
+.btn-custom:hover {
+
+background-color: #00afef;
+
+color: white;
+
+}
+
 
     </style>
 </body>

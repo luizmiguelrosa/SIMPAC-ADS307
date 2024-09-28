@@ -10,10 +10,11 @@
             <div class="row">
                 @foreach ($works as $work)
                     @php
+                        // Verifica se o usuário autenticado já avaliou o trabalho
                         $evaluated = $work->evaluations->isNotEmpty();
                     @endphp
 
-                    <div class="col-md-6 col-lg-4 mb-4">
+                    <div class="col-12 mb-4">
                         @if ($evaluated)
                             <!-- Card não clicável -->
                             <div class="card shadow-sm border-success">
@@ -40,21 +41,20 @@
             </div>
         @endif
     </div>
-@endsection
-
-<style>
+    
+    <style>
     /* Título responsivo */
     h1 {
         font-size: 1.8rem;
         font-weight: 600;
     }
-
+    
     /* Estilo dos cards */
     .card {
         border-radius: 8px;
         transition: transform 0.2s;
     }
-
+    
     .card:hover {
         transform: translateY(-5px);
     }
@@ -83,4 +83,6 @@
             font-size: 1.1rem;
         }
     }
-</style>
+    </style>
+
+@endsection

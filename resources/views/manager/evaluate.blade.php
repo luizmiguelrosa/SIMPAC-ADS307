@@ -2,8 +2,10 @@
 
 @section('content')
 <div class="container">
-    <h1 class="text-center mb-4">Avaliar Trabalho: {{ $work->overview }}</h1>
-
+    <h1 class="text-center mb-4"><strong>Avaliar Trabalho: {{ $work->overview }}</strong></h1>
+    <h2 class="text-center mb-4">Protoclo: {{ $work->protocol }}</h2>
+    <h2 class="text-center mb-4"> {{ $work->course->course_name }}</h2>
+    
     <form action="{{ route('manager.works.storeEvaluation', $work->id) }}" method="POST">
         @csrf
         <div class="table-responsive">
@@ -11,7 +13,7 @@
                 <thead class="thead-light">
                     <tr>
                         <th>Pergunta</th>
-                        <th>Resposta</th>
+                        <th>Nota</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -38,7 +40,7 @@
             <a href="{{ route('manager.works') }}" class="btn btn-secondary btn-lg" style="padding: 15px 30px;">
                 Cancelar
             </a> <!--trocar depois o estilo desse botao-->
-            <button type="submit" class="btn btn-primary btn-lg" style="padding: 15px 30px; margin-right: 10px;">
+            <button type="submit" class="btn btn-custom btn-lg" style="padding: 15px 30px; margin-right: 10px;">
                 Enviar Avaliação
             </button>
             

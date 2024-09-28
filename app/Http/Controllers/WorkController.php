@@ -15,16 +15,37 @@ use Illuminate\Support\Facades\Hash;
 
 class WorkController extends Controller
 {
-    public function index() {
-        $courses = Course::all();
-        $symposiums = Symposium::whereNull('end_date')->get(); // Simpósios sem data de término
-        $evaluators = User::where('type', 2)->get(); // Obtém todos os managers
-        $evaluativeModels = EvaluativeModel::all(); //Pega os modelos
-        $categories = Category::all(); // Carrega todas as categorias
-        $works = Work::all();
+    public function index(Request $request)
+{
+    $courses = Course::all();
+    $symposiums = Symposium::whereNull('end_date')->get(); // Simpósios sem data de término
+    $evaluators = User::where('type', 2)->get(); // Obtém todos os avaliadores
+    $evaluativeModels = EvaluativeModel::all(); // Pega os modelos
+    $categories = Category::all(); // Carrega todas as categorias
 
-        return view('admin.works.index', compact('courses', 'symposiums', 'evaluators', 'evaluativeModels', 'categories', 'works'));
+    // Inicia a query de busca dos trabalhos
+    $query = Work::query();
+
+    // Filtros opcionais
+    if ($request->filled('course')) {
+        $query->whereHas('course', function($q) use ($request) {
+            $q->where('course_name', 'like', '%' . $request->course . '%');
+        });
     }
+
+    if ($request->filled('evaluative_model')) {
+        $query->where('evaluative_model_id', $request->evaluative_model);
+    }
+
+    if ($request->filled('category')) {
+        $query->where('category_id', $request->category);
+    }
+
+    // Retorna a lista de trabalhos filtrados
+    $works = $query->get();
+
+    return view('admin.works.index', compact('courses', 'symposiums', 'evaluators', 'evaluativeModels', 'categories', 'works'));
+}
     
     public function create()
     {
@@ -72,24 +93,63 @@ class WorkController extends Controller
     
         return redirect()->route('admin.home')->with(['status' => 'success', 'message' => 'Trabalho criado com sucesso!']);
     }
+
+    public function edit($id)
+{
+    $work = Work::findOrFail($id); // Encontra o trabalho pelo ID ou lança um erro 404
+    $courses = Course::all();
+    $evaluativeModels = EvaluativeModel::all();
+    $categories = Category::all();
+
+    // Retorna a view de edição com os dados do trabalho e demais informações necessárias
+    return view('admin.works.edit', compact('work', 'courses', 'evaluativeModels', 'categories'));
+}
+
+public function destroy($id)
+{
+    $work = Work::findOrFail($id); // Encontra o trabalho pelo ID
+    $work->delete(); // Deleta o trabalho
+
+    // Redireciona de volta à página de trabalhos com uma mensagem de sucesso
+    return redirect()->route('works.index')->with('success', 'Trabalho deletado com sucesso!');
+}
+public function update(Request $request, $id)
+{
+    $work = Work::findOrFail($id); // Encontra o trabalho pelo ID
+
+    // Valida os dados do formulário
+    $request->validate([
+        'protocol' => 'required|string|max:255',
+        'overview' => 'required|string',
+        'course_id' => 'required|exists:courses,id',
+        'category_id' => 'required|exists:categories,id',
+        'evaluative_model_id' => 'required|exists:evaluative_models,id',
+    ]);
+
+    // Atualiza os dados do trabalho
+    $work->update($request->all());
+
+    // Redireciona de volta à página de trabalhos com uma mensagem de sucesso
+    return redirect()->route('works.index')->with('success', 'Trabalho atualizado com sucesso!');
+}
+
+
     // ---------------------------------PARTE DE AVALIADORES---------------------------------------
     //  método que irá buscar os trabalhos que o usuário pode avaliar e passar esses dados para a view.
     public function managerWorks()
     {
         $userId = Auth::id(); // Obtém o ID do usuário autenticado
     
-        // Carrega as relações com eager loading
-        $works = Work::with('course', 'evaluative_model')
-                     ->whereHas('evaluators', function ($query) use ($userId) {
-                         $query->where('user_id', $userId);
-                     })
-                     ->get();
-    
-        // Dump para verificar os resultados
-       // dd($works);
+        // Carrega os trabalhos e verifica se o usuário autenticado já os avaliou
+        $works = Work::with(['course', 'evaluative_model', 'evaluations' => function($query) use ($userId) {
+            $query->where('evaluator_id', $userId); // Filtra por avaliador autenticado
+        }])->whereHas('evaluators', function ($query) use ($userId) {
+            $query->where('user_id', $userId);
+        })->get();
     
         return view('manager.works', compact('works'));
     }
+    
     
 
 
