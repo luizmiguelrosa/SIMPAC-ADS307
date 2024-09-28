@@ -1,80 +1,80 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container">
-        <h1 class="text-center mb-4">Trabalhos Disponíveis para Avaliação</h1>
+    <div class="container mt-4">
+        <h1 class="text-center mb-4" style="font-size: 1.5rem;">Trabalhos Disponíveis para Avaliação</h1>
 
         @if ($works->isEmpty())
-            <p>Não há trabalhos disponíveis para avaliação no momento.</p>
+            <p class="text-center">Não há trabalhos disponíveis para avaliação no momento.</p>
         @else
-            <div class="table-responsive">
-                <table class="table text-center"> <!-- Tabela centralizada e com stripes -->
-                    <thead>
-                        <tr>
-                            <th>Resumo</th>
-                            <th>Ação</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach ($works as $work)
-                            @php
-                                // Verifica se o trabalho já foi avaliado
-                                $evaluated = $work->evaluations->isNotEmpty();
-                                // Limitar a quantidade de palavras no overview
-                                $overview_excerpt = Str::words($work->overview, 10, '...');
-                            @endphp
-                            <tr class="{{ $evaluated ? 'table-success' : '' }}"> <!-- Linha verde se já avaliado -->
-                                <td data-toggle="tooltip" title="{{ $work->overview }}">{{ Str::words($work->overview, 5, '...') }}</td>
-                                <!--<td>{{ $work->course->course_abbreviation ?? 'Não disponível' }}</td>
-                                <td>{{ $work->evaluative_model->model_name ?? 'Não disponível' }}</td> -->
-                                <td>
+            <div class="row">
+                @foreach ($works as $work)
+                    @php
+                        $evaluated = $work->evaluations->isNotEmpty();
+                    @endphp
+
+                    <!-- Tornar todo o card clicável -->
+                    <div class="col-md-6 col-lg-4 mb-4">
+                        <a href="{{ route('manager.work.evaluate', $work->id) }}" class="text-decoration-none">
+                            <div class="card shadow-sm {{ $evaluated ? 'border-success' : '' }}">
+                                <div class="card-body">
+                                    <h5 class="card-title">{{ $work->overview }}</h5>
+                                    <p class="text-muted small">Protocolo: {{ $work->protocol }} | Curso: {{ $work->course->course_name }}</p>
+
                                     @if ($evaluated)
-                                        <span>Avaliado</span>
+                                        <span class="badge bg-success">Avaliado</span>
                                     @else
-                                        <a href="{{ route('manager.work.evaluate', $work->id) }}" class="btn btn-primary btn-sm">Avaliar</a>
+                                        <span class="badge bg-primary">Avaliar</span>
                                     @endif
-                                </td>
-                            </tr>
-                        @endforeach
-                    </tbody>
-                </table>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                @endforeach
             </div>
         @endif
     </div>
 @endsection
 
-@media (max-width: 768px) {
-    table th, table td {
-        white-space: nowrap;
-        font-size: 14px;
-    }
-}
-
 <style>
-    body {
-    font-size: 16px; /* Tamanho padrão para corpo de texto */
-}
-
-h1 {
-    font-size: 28px; /* Títulos maiores */
-}
-
-h2 {
-    font-size: 24px;
-}
-
-h3 {
-    font-size: 20px;
-}
-
-button {
-    font-size: 16px; /* Tamanho de fonte dos botões */
-}
-
-@media (max-width: 768px) {
-    body {
-        font-size: 14px; /* Ajuste para dispositivos móveis */
+    /* Título responsivo */
+    h1 {
+        font-size: 1.8rem;
+        font-weight: 600;
     }
-}
 
+    /* Estilo dos cards */
+    .card {
+        border-radius: 8px;
+        transition: transform 0.2s;
+    }
+
+    .card:hover {
+        transform: translateY(-5px);
+    }
+
+    /* Tornar o link do card invisível */
+    a.text-decoration-none {
+        color: inherit;
+    }
+
+    a.text-decoration-none:hover {
+        text-decoration: none;
+    }
+
+    /* Texto pequeno e discreto */
+    .text-muted {
+        font-size: 0.875rem;
+    }
+
+    /* Ajustes para dispositivos móveis */
+    @media (max-width: 768px) {
+        h1 {
+            font-size: 1.4rem;
+        }
+
+        .card-title {
+            font-size: 1.1rem;
+        }
+    }
 </style>
