@@ -13,22 +13,28 @@
                         $evaluated = $work->evaluations->isNotEmpty();
                     @endphp
 
-                    <!-- Tornar todo o card clicável -->
                     <div class="col-md-6 col-lg-4 mb-4">
-                        <a href="{{ route('manager.work.evaluate', $work->id) }}" class="text-decoration-none">
-                            <div class="card shadow-sm {{ $evaluated ? 'border-success' : '' }}">
+                        @if ($evaluated)
+                            <!-- Card não clicável -->
+                            <div class="card shadow-sm border-success">
                                 <div class="card-body">
                                     <h5 class="card-title">{{ $work->overview }}</h5>
                                     <p class="text-muted small">Protocolo: {{ $work->protocol }} | Curso: {{ $work->course->course_name }}</p>
-
-                                    @if ($evaluated)
-                                        <span class="badge bg-success">Avaliado</span>
-                                    @else
-                                        <span class="badge bg-primary">Avaliar</span>
-                                    @endif
+                                    <span class="badge bg-success">Avaliado</span>
                                 </div>
                             </div>
-                        </a>
+                        @else
+                            <!-- Card clicável -->
+                            <a href="{{ route('manager.work.evaluate', $work->id) }}" class="text-decoration-none">
+                                <div class="card shadow-sm">
+                                    <div class="card-body">
+                                        <h5 class="card-title">{{ $work->overview }}</h5>
+                                        <p class="text-muted small">Protocolo: {{ $work->protocol }} | Curso: {{ $work->course->course_name }}</p>
+                                        <span class="badge bg-primary">Avaliar</span>
+                                    </div>
+                                </div>
+                            </a>
+                        @endif
                     </div>
                 @endforeach
             </div>
