@@ -10,36 +10,39 @@
             <div class="col-md-12 text-center">
                 <label class="form-label"><strong>Cursos</strong></label>
                 <div class="d-flex flex-wrap justify-content-center">
+                    
+                    @foreach($courses as $course)
+                    <button type="submit" name="course" value="{{ $course->course_abbreviation }}" class="btn btn-custom m-2">
+                        {{ $course->course_abbreviation }}
+                    </button>
+                    @endforeach
                     <!-- Botão para Todos os Cursos -->
                     <button type="submit" name="course" value="" class="btn btn-secondary m-2">
                         Todos os Cursos
                     </button>
-                    
-                    @foreach($courses as $course)
-                        <button type="submit" name="course" value="{{ $course->course_abbreviation }}" class="btn btn-primary m-2">
-                            {{ $course->course_abbreviation }}
-                        </button>
-                    @endforeach
                 </div>
             </div>
 
-            <div class="col-md-6 mt-3">
-                <label for="evaluative_model">Modelo Avaliativo:</label>
-                <select name="evaluative_model" id="evaluative_model" class="form-control">
-                    <option value="">Selecione...</option>
-                    @foreach($evaluativeModels as $model)
-                        <option value="{{ $model->id }}" {{ request('evaluative_model') == $model->id ? 'selected' : '' }}>
-                            {{ $model->model_name }}
-                        </option>
-                    @endforeach
+            <!-- Filtros por MODELO AVALIATIVO -->
+            <div class="col-md-12 mt-3 text-center">
+                <label for="evaluative_model"><strong> Modelo Avaliativo:</strong></label>
+                <div class="d-flex justify-content-center">
+                <div class="mt-3" style="width: 250px;">
+                    <select name="evaluative_model" id="evaluative_model" class="form-control">
+                        <option value="">Selecione...</option>
+                        @foreach($evaluativeModels as $model)
+                            <option value="{{ $model->id }}" {{ request('evaluative_model') == $model->id ? 'selected' : '' }}>
+                                {{ $model->model_name }}
+                            </option>
+                        @endforeach
                 </select>
             </div>
         </div>
 
         <!-- Botões de Ação -->
-        <div class="mt-3">
-            <button type="submit" class="btn btn-primary">Filtrar</button>
+        <div class="mt-3 text-center">
             <a href="{{ route('admin.results.index') }}" class="btn btn-secondary">Limpar Filtros</a>
+            <button type="submit" class="btn btn-custom">Filtrar</button>
         </div>
     </form>
 
@@ -82,4 +85,16 @@
         @endforeach
     @endif
 </div>
+<style>
+    .btn-custom {
+    background-color: #205483; /* Um azul mais escuro */
+    color: white; /* Cor do texto */
+}
+
+.btn-custom:hover {
+    background-color: #00afef;
+    color: white;
+}
+
+</style>
 @endsection
