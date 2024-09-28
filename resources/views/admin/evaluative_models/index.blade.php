@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
     <h1>Modelos Avaliativos</h1>
-    <a href="{{ route('evaluative_models.create') }}" class="btn btn-primary mb-3">Adicionar Novo Modelo Avaliativo</a>
+    <a href="{{ route('evaluative_models.create') }}" class="btn btn-custom mb-3">Adicionar Novo Modelo Avaliativo</a>
 
     <table class="table table-striped">
         <thead>

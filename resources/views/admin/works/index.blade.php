@@ -3,7 +3,11 @@
 @section('content')
 <div class="container">
     <h1 class="text-center mb-4">Lista de Trabalhos Criados</h1>
-
+    
+    <!-- Botão para criar um novo trabalho -->
+    <div class="text-center mt-4">
+        <a href="{{ route('admin.create-work') }}" class="btn btn-custom">Criar Novo Trabalho</a>
+    </div>
     <!-- Filtros -->
     <form method="GET" action="{{ route('works.index') }}" class="mb-4">
         <div class="row">
@@ -39,7 +43,7 @@
                 </select>
             </div>
         </div>
-        <button type="submit" class="btn btn-primary mt-3">Filtrar</button>
+        <button type="submit" class="btn btn-custom mt-3">Filtrar</button>
     </form>
 
     <!-- Tabela de Trabalhos -->
@@ -81,9 +85,5 @@
         </tbody>
     </table>
 
-    <!-- Botão para criar um novo trabalho -->
-    <div class="text-center mt-4">
-        <a href="{{ route('admin.create-work') }}" class="btn btn-custom">Criar Novo Trabalho</a>
-    </div>
 </div>
 @endsection

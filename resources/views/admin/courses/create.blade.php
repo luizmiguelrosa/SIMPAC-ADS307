@@ -16,7 +16,7 @@
             <input type="text" class="form-control" id="course_abbreviation" name="course_abbreviation" required>
         </div>
         
-        <button type="submit" class="btn btn-primary mt-3">Save</button>
+        <button type="submit" class="btn btn-custom mt-3">Save</button>
     </form>
 </div>
 @endsection

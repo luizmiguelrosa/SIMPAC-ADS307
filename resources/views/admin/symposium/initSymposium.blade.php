@@ -28,7 +28,7 @@
 
                             <div class="form-group d-flex justify-content-evenly">
                                 <button class="btn btn-danger" onclick="window.location.replace('{{ route('admin.home') }}'); return false;">Cancelar</button>
-                                <button type="submit" class="btn btn-primary">Iniciar Simpósio</button>
+                                <button type="submit" class="btn btn-custom">Iniciar Simpósio</button>
                             </div>
                         </form>
                     </div>

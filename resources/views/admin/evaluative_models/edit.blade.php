@@ -26,7 +26,7 @@
         </div>
 
        <!-- <button type="button" class="btn btn-secondary mt-3" id="add-question">Adicionar Pergunta</button> Por hora não funciona -->
-        <button type="submit" class="btn btn-primary mt-3">Salvar</button> <!-- tá enviando pra onde ?-->
+        <button type="submit" class="btn btn-custom mt-3">Salvar</button> <!-- tá enviando pra onde ?-->
     </form>
 </div>
 

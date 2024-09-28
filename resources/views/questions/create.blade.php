@@ -29,7 +29,7 @@
             <input type="number" class="form-control" id="num_questions" name="num_questions" value="{{ old('num_questions', $numQuestions) }}" min="1" max="20" required>
         </div>
 
-        <button type="submit" class="btn btn-primary">Gerar Perguntas</button>
+        <button type="submit" class="btn btn-custom">Gerar Perguntas</button>
     </form>
 
     <!-- Formulário dinâmico de perguntas, exibido após a seleção -->

@@ -58,7 +58,7 @@
             </div>
         </div>
 
-        <button type="submit" class="btn btn-primary mt-4">Atualizar Trabalho</button>
+        <button type="submit" class="btn btn-custom mt-4">Atualizar Trabalho</button>
     </form>
 </div>
 @endsection

@@ -5,7 +5,7 @@
 @section('content')
 <div class="container">
     <h1>Avaliadores</h1>
-    <a href="{{ route('evaluators.create') }}" class="btn btn-primary mb-3">Adicionar Avaliador</a>
+    <a href="{{ route('evaluators.create') }}" class="btn btn-custom mb-3">Adicionar Avaliador</a>
 
     <table class="table table-striped">
         <thead>

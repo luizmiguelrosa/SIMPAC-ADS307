@@ -12,7 +12,7 @@
             <input type="text" class="form-control" id="model_name" name="model_name" required placeholder="Digite o nome do modelo avaliativo">
         </div>
 
-        <button type="submit" class="btn btn-primary mt-3">Criar Modelo</button>
+        <button type="submit" class="btn btn-custom mt-3">Criar Modelo</button>
     </form>
 </div>
 @endsection
