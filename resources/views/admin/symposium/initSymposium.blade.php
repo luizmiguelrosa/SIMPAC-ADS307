@@ -26,8 +26,8 @@
                                 <label for="confirm_checkbox" class="form-check-label">Eu li e entendo que, ao clicar em 'Iniciar o Simpósio', sou responsável por gerenciar o evento, garantir o cumprimento de todas as diretrizes e procedimentos necessários, bem como pela proteção da informação e integridade do simpósio contra qualquer dano.</label>
                             </div>
 
-                            <div class="form-group d-flex justify-content-evenly">
-                                <button class="btn btn-danger" onclick="window.location.replace('{{ route('admin.home') }}'); return false;">Cancelar</button>
+                            <div class="btn-container d-flex justify-content-evenly">
+                                <a href="{{ route('admin.home') }}" class="btn btn-danger">Cancelar</a>
                                 <button type="submit" class="btn btn-custom">Iniciar Simpósio</button>
                             </div>
                         </form>

@@ -109,10 +109,9 @@
 </div>
 
             <!-- Botões de cancelar e enviar -->
-            <div class="d-flex justify-content-between">
-                <button type="button" class="btn btn-danger" onclick="window.location.replace('{{ route('admin.home')}}'); return false;">Cancelar</button>
-                <button type="submit" class="btn btn-primary">Create Work</button>
-
+            <div class="btn-container d-flex justify-content-evenly">
+                <a href="{{ route('admin.home') }}" class="btn btn-danger">Cancelar</a>
+                <button type="submit" class="btn btn-custom">Criar Trabalho</button>
             </div>
         </form>
     </div>

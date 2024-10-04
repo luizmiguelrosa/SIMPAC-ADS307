@@ -14,7 +14,10 @@
             @enderror
         </div>
 
-        <button type="submit" class="btn btn-custom">Salvar</button>
+        <div class="btn-container d-flex justify-content-evenly">
+            <a href="{{ route('categories.index') }}" class="btn btn-danger">Cancelar</a>
+            <button type="submit" class="btn btn-custom">Adicionar</button>
+        </div>
     </form>
 </div>
 @endsection

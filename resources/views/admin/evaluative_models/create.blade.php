@@ -7,12 +7,16 @@
     <!-- Formulário apenas para criação do modelo avaliativo -->
     <form action="{{ route('evaluative_models.store') }}" method="POST">
         @csrf
-        <div class="form-group">
+        <div class="form-group mb-3">
             <label for="model_name">Nome do Modelo Avaliativo</label>
             <input type="text" class="form-control" id="model_name" name="model_name" required placeholder="Digite o nome do modelo avaliativo">
         </div>
 
-        <button type="submit" class="btn btn-custom mt-3">Criar Modelo</button>
+
+        <div class="btn-container d-flex justify-content-evenly">
+            <a href="{{ route('evaluative_models.index') }}" class="btn btn-danger">Cancelar</a>
+            <button type="submit" class="btn btn-custom">Criar Modelo</button>
+        </div>
     </form>
 </div>
 @endsection

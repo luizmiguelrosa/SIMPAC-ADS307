@@ -21,8 +21,8 @@
                                 <label for="confirm_checkbox" class="form-check-label">Eu li e entendo que, ao clicar em 'Finalizar o Simpósio', confirmo que todas as atividades foram concluídas, e aceito a responsabilidade pela integridade dos dados gerados durante o evento e pela preservação das informações até seu arquivamento final.</label>
                             </div>
 
-                            <div class="form-group d-flex justify-content-evenly ">
-                                <button class="btn btn-danger" onclick="window.location.replace('{{ route('admin.home') }}'); return false;">Cancelar</button>
+                            <div class="btn-container d-flex justify-content-evenly ">
+                            <a href="{{ route('admin.home') }}" class="btn btn-danger">Cancelar</a>
                                 <button type="submit" class="btn btn-custom">Finalizar Simpósio</button>
                             </div>
                         </form>
