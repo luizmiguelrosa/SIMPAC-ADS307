@@ -13,7 +13,7 @@
                         <a href="{{ route('symposium.start') }}" class="d-block mx-auto btn btn-primary btn-custom fw-bold">INICIAR SIMPÓSIO</a>
 
                         <!-- Botão para Finalizar Simpósio (Futura Implementação) -->
-                        <a href="{{ route('symposium.end') }}" class="d-block mx-auto btn btn-primary btn-custom fw-bold">FINALIZAR SIMPÓSIO</a>
+                        <a href="{{ route('symposium.end') }}" class="d-block mx-auto btn btn-primary btn-custom-red fw-bold">FINALIZAR SIMPÓSIO</a>
                     </div>
 
                     <a href="{{ route('admin.create-work') }}" class="btn btn-primary btn-custom d-block mx-auto mt-3 fw-bold">NOVO TRABALHO</a>
@@ -32,15 +32,7 @@
         width: 200px;
     }
 
-    .btn.btn-custom {
-        background-color: #205483 !important; /* Cor de fundo dos botões */
-        border-color: #000000 !important;
-    }
-
-    .btn.btn-custom:hover {
-        background-color: #2C2D48 !important;
-        border-color: #00AFEF !important;
-    }
+    
 
     .contador-simposio {
         display: flex;
@@ -50,7 +42,8 @@
 
     @media (max-width: 576px) {
         .contador-simposio {
-            flex-direction: column; /* Alterar direção para coluna em dispositivos móveis */
+            
+            flex-direction: row; /* Alterar direção para coluna em dispositivos móveis */
             width: 100%; /* Botões ocupam toda a largura disponível */
             font-size: 0.875rem; /* Tamanho da fonte menor para dispositivos móveis */
         }

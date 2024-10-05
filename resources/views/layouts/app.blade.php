@@ -89,7 +89,7 @@ footer {
 .btn-custom {
 
 background-color: #205483; 
-
+border-color: #000000;
 color: white; 
 
 }
@@ -97,11 +97,27 @@ color: white;
 .btn-custom:hover {
 
 background-color: #00afef;
+border-color: black;
 
 color: white;
 
 }
+.btn-custom-red {
 
+background-color: #832020; 
+border-color: #000000;
+color: white; 
+
+}
+
+.btn-custom-red:hover {
+
+background-color: #420707;
+border-color: black;
+
+color: white;
+
+}
 
     </style>
 </body>

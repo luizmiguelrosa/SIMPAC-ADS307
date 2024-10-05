@@ -8,7 +8,7 @@
 
     <!-- Novo conteúdo -->
     <main>
-        <div class="spacer"></div> <!-- Espaço acima dos botões -->
+       <!-- <div class="spacer"></div>  Espaço acima dos botões | OFF-->
         <div class="container">
             <div class="edicao">
                 <div class="position-relative">
