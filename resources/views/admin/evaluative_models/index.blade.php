@@ -9,7 +9,7 @@
         <thead>
             <tr>
                 <th>Nome</th>
-                <th>Quantidade de Perguntas</th> <!-- Nova coluna para quantidade de perguntas -->
+                <th>Quantidade de Perguntas</th>
                 <th>Ações</th>
             </tr>
         </thead>
@@ -17,6 +17,7 @@
             @foreach ($evaluativeModels as $evaluativeModel)
                 <tr>
                     <td>{{ $evaluativeModel->model_name }}</td>
+                    <td> {{ $evaluativeModel->questions->count() }} </td> <!-- Quantidade de perguntas -->
                     <td>
                         <a href="{{ route('evaluative_models.edit', $evaluativeModel->id) }}" class="btn btn-warning btn-sm">Editar</a>
                         <form action="{{ route('evaluative_models.destroy', $evaluativeModel->id) }}" method="POST" style="display:inline;">
