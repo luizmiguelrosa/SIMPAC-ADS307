@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
+<div class="container text-center">
     <h1>Criar Novo Modelo Avaliativo</h1>
 
     <!-- Formulário apenas para criação do modelo avaliativo -->
@@ -13,7 +13,7 @@
         </div>
 
 
-        <div class="btn-container d-flex justify-content-evenly">
+        <div class="btn-container justify-content text-center">
             <a href="{{ route('evaluative_models.index') }}" class="btn btn-danger">Cancelar</a>
             <button type="submit" class="btn btn-custom">Criar Modelo</button>
         </div>

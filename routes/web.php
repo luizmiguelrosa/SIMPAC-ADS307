@@ -88,7 +88,13 @@ Route::middleware(['auth', 'user-access:admin'])->group(function () {
 //->name('questions.store');
 
 //novas rotas para perguntas
-Route::get('/admin/questions/create', [QuestionController::class, 'create'])->name('questions.create');
+//Route::get('/admin/questions/create', [QuestionController::class, 'create'])->name('questions.create');
+//Route::post('/admin/questions', [QuestionController::class, 'store'])->name('questions.store');
+// Rotas para perguntas
+Route::get('/admin/questions', [QuestionController::class, 'index'])->name('questions.index');
+Route::get('/admin/questions/{question}/edit', [QuestionController::class, 'edit'])->name('questions.edit');
+Route::put('/admin/questions/{question}', [QuestionController::class, 'update'])->name('questions.update');
+Route::delete('/admin/questions/{question}', [QuestionController::class, 'destroy'])->name('questions.destroy');
 Route::post('/admin/questions', [QuestionController::class, 'store'])->name('questions.store');
 
 

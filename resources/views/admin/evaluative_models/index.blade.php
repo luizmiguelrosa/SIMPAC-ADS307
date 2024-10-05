@@ -1,23 +1,23 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
+<div class="container text-center">
     <h1>Modelos Avaliativos</h1>
     <a href="{{ route('evaluative_models.create') }}" class="btn btn-custom mb-3">Adicionar Novo Modelo Avaliativo</a>
 
     <table class="table table-striped">
         <thead>
-            <tr>
+            <tr class="text-center">
                 <th>Nome</th>
-                <th>Quantidade de Perguntas</th>
                 <th>Ações</th>
+                <th>Quantidade de Perguntas</th>
+                <th>Editar Perguntas</th>
             </tr>
         </thead>
         <tbody>
             @foreach ($evaluativeModels as $evaluativeModel)
-                <tr>
+                <tr class=" text-center">
                     <td>{{ $evaluativeModel->model_name }}</td>
-                    <td> {{ $evaluativeModel->questions->count() }} </td> <!-- Quantidade de perguntas -->
                     <td>
                         <a href="{{ route('evaluative_models.edit', $evaluativeModel->id) }}" class="btn btn-warning btn-sm">Editar</a>
                         <form action="{{ route('evaluative_models.destroy', $evaluativeModel->id) }}" method="POST" style="display:inline;">
@@ -26,6 +26,12 @@
                             <button type="submit" class="btn btn-danger btn-sm" onclick="return confirmDelete('{{ $evaluativeModel->model_name }}')">Deletar</button>
                         </form>
                     </td>
+                    <td> {{ $evaluativeModel->questions->count() }} </td> <!-- Quantidade de perguntas -->
+                    <td> 
+    <a href="{{ route('questions.index', ['evaluative_model_id' => $evaluativeModel->id]) }}" class="btn btn-custom btn-sm">
+        Editar Perguntas
+    </a> 
+</td>
                 </tr>
             @endforeach
         </tbody>

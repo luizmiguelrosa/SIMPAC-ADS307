@@ -3,7 +3,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
+<div class="container text-center">
     <h1>Avaliadores</h1>
     <a href="{{ route('evaluators.create') }}" class="btn btn-custom mb-3">Adicionar Avaliador</a>
 

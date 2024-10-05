@@ -40,7 +40,10 @@
             <input type="password" class="form-control" id="password_confirmation" name="password_confirmation">
         </div>
 
-        <button type="submit" class="btn btn-success">Atualizar</button>
+        <div class="btn-container justify-content">
+            <a href="{{ route('evaluators.index') }}" class="btn btn-custom-red mt-3">Cancelar</a>
+            <button type="submit" class="btn btn-custom mt-3">Salvar</button>
+        </div>
     </form>
 </div>
 @endsection

@@ -31,11 +31,6 @@
         
         <!-- Link para a página que lista todos os avaliadores -->
         <li><a class="dropdown-item" href="{{ route('evaluators.index') }}">Visualizar</a></li>
-        <li><a class="dropdown-item" href="#">Atualizar</a></li>
-        <li>
-            <hr class="dropdown-divider">
-        </li>
-        <li><a class="dropdown-item" href="#">Apagar</a></li>
     </ul>
 </li>
 <li class="nav-item dropdown">
@@ -43,8 +38,8 @@
         Configurações Internas
     </a>
     <ul class="dropdown-menu">
-        <li><a class="dropdown-item" href="{{ route('questions.create') }}">Perguntas</a></li>
         <li><a class="dropdown-item" href="{{ route('evaluative_models.index') }}">Modelo Avaliativo</a></li>
+        <li><a class="dropdown-item" href="{{ route('questions.index') }}">Perguntas</a></li>
         <li><a class="dropdown-item" href="{{ route('courses.index') }}">Cursos</a></li>
         <li><a class="dropdown-item" href="{{ route('categories.index') }}">Categorias</a></li>
     </ul>

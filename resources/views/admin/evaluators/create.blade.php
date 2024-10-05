@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
+<div class="container text-center">
     <h1>Criar Avaliador</h1>
 
     @if ($errors->any())
@@ -27,9 +27,9 @@
             <input type="email" class="form-control" id="email" name="email" value="{{ old('email') }}" required>
         </div>
         
-        <div class="btn-container d-flex justify-content-evenly">
-            <a href="{{ route('admin.home') }}" class="btn btn-danger">Cancelar</a>
-            <button type="submit" class="btn btn-custom">Salvar</button>
+        <div class="btn-container justify-content">
+            <a href="{{ route('evaluators.index') }}" class="btn btn-custom-red mt-3">Cancelar</a>
+            <button type="submit" class="btn btn-custom mt-3">Salvar</button>
         </div>
     </form>
 </div>

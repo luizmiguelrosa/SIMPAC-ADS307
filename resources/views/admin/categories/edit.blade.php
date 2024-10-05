@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
+<div class="container text-center">
     <h1>Editar Categoria</h1>
 
     <form action="{{ route('categories.update', $category->id) }}" method="POST">
@@ -15,7 +15,8 @@
             @enderror
         </div>
 
-        <button type="submit" class="btn btn-custom">Atualizar</button>
+        <a href="{{ route('categories.index') }}" class="btn btn-custom-red mt-3">Cancelar</a>
+        <button type="submit" class="btn btn-custom mt-3">Atualizar</button>
     </form>
 </div>
 @endsection

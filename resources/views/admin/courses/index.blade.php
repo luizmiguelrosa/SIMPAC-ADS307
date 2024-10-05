@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
+<div class="container text-center">
     <h1>Cursos</h1>
     <a href="{{ route('courses.create') }}" class="btn btn-custom mb-3">Adicionar Novo Curso</a>
 
