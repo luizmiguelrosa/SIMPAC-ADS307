@@ -22,6 +22,7 @@ class WorkController extends Controller
     $evaluators = User::where('type', 2)->get(); // Obtém todos os avaliadores
     $evaluativeModels = EvaluativeModel::all(); // Pega os modelos
     $categories = Category::all(); // Carrega todas as categorias
+    $symposiums = Symposium::all(); // Carrega todos os simposios
 
     // Inicia a query de busca dos trabalhos
     $query = Work::query();

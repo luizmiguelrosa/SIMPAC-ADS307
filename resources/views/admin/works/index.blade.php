@@ -56,6 +56,7 @@
                 <th>Categoria</th>
                 <th>Modelo Avaliativo</th>
                 <th>Ações</th>
+                <th>Edição Simpósio</th>
             </tr>
         </thead>
         <tbody>
@@ -80,6 +81,7 @@
                             </button>
                         </form>
                     </td>
+                    <td>{{ $work->symposium->edition }}</td>
                 </tr>
             @endforeach
         </tbody>

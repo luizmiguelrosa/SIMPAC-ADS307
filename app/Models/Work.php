@@ -32,4 +32,9 @@ class Work extends Model
     {
         return $this->hasMany(Evaluation::class);
     }
+    // relacionamento para pegar a edição
+    public function symposium()
+    {
+        return $this->belongsTo(Symposium::class);
+    }
 }
