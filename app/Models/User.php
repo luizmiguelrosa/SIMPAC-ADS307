@@ -66,7 +66,7 @@ class User extends Authenticatable
     }
     public function works()
     {
-        return $this->belongsToMany(Work::class, 'work_evaluator');
+        return $this->belongsToMany(Work::class, 'work_evaluator', 'user_id', 'work_id');
     }
     public function evaluations()
     {

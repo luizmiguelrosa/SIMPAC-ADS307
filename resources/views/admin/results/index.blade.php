@@ -57,7 +57,7 @@
                 @foreach ($groupedWorks->sortByDesc('average_score')->values() as $index => $work)
                     <!--<div class="col-md-6 col-lg-4 mb-4"> Aqui mantem dois cards ou mais na mesma linha-->
                     <div class="col-12 mb-4"> <!-- Mantendo apenas um card por coluna no desktop col-12 -->
-                        <a href="{{ route('admin.results.show', ['id' => $work->id]) }}" class="text-decoration-none"> <!--Deixa o card clicavel-->
+                        <a href="{{ route('results.show', ['id' => $work->id]) }}" class="text-decoration-none"> <!--Deixa o card clicavel-->
                             <div class="card shadow-sm">
                                 <div class="card-body text-center">
                                     <div>

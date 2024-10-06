@@ -58,12 +58,27 @@ class ResultController extends Controller
 }
 
     //Função para exibir os detalhes de cada trabalho
+    //Estou reutizalndo o metodo para calcular, criar uma função depois para evitar redundancia
     public function show($id)
-    {
-        $work = Work::with(['evaluations', 'course', 'evaluative_model', 'category'])->findOrFail($id);
+{
+    // Carrega o trabalho com as relações necessárias, incluindo os avaliadores
+    $work = Work::with(['evaluations', 'course', 'evaluative_model', 'category', 'evaluators'])->findOrFail($id);
 
-        return view('admin.results.show', compact('work'));
+    // Calcula a nota média para este trabalho
+    $totalScore = 0;
+    $totalQuestions = 0;
+
+    foreach ($work->evaluations as $evaluation) {
+        $responses = json_decode($evaluation->responses, true);
+        $totalScore += array_sum($responses);
+        $totalQuestions += count($responses);
     }
+
+    $work->average_score = $totalQuestions > 0 ? $totalScore / $totalQuestions : null;
+
+    // Retorna a view com os dados, incluindo os avaliadores
+    return view('admin.results.show', compact('work'));
+}
 
 
 }

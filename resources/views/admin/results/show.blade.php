@@ -11,6 +11,12 @@
             <p><strong>Curso:</strong> {{ $work->course->course_name }}</p>
             <p><strong>Modelo Avaliativo:</strong> {{ $work->evaluative_model->model_name }}</p>
             <p><strong>Nota Média:</strong> {{ $work->average_score ? number_format($work->average_score, 2) : 'Sem Avaliação' }}</p>
+            <!-- Exibindo os avaliadores associados ao trabalho -->
+<p><strong>Avaliadores:</strong></p>
+@foreach($work->evaluators as $evaluator)
+    <span class="badge bg-primary">{{ $evaluator->name }}</span>
+@endforeach
+
         </div>
     </div>
     <a href="{{ route('admin.results.index') }}" class="btn btn-secondary">Voltar</a> <!-- Botão de voltar para a listagem dos modelos -->
