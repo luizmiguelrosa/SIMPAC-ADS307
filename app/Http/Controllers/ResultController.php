@@ -57,4 +57,13 @@ class ResultController extends Controller
     return view('admin.results.index', compact('works', 'evaluativeModels', 'categories', 'courses'));
 }
 
+    //Função para exibir os detalhes de cada trabalho
+    public function show($id)
+    {
+        $work = Work::with(['evaluations', 'course', 'evaluative_model', 'category'])->findOrFail($id);
+
+        return view('admin.results.show', compact('work'));
+    }
+
+
 }

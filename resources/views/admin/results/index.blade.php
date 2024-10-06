@@ -57,24 +57,25 @@
                 @foreach ($groupedWorks->sortByDesc('average_score')->values() as $index => $work)
                     <!--<div class="col-md-6 col-lg-4 mb-4"> Aqui mantem dois cards ou mais na mesma linha-->
                     <div class="col-12 mb-4"> <!-- Mantendo apenas um card por coluna no desktop col-12 -->
-                        <div class="card shadow-sm">
-                            <div class="card-body text-center">
-                                <div>
-                                    @if($index == 0)
-                                    <img src="/assets/ranking/icons8-1st-place-medal-emoji-32.png" alt="1º Lugar">
-                                    @elseif($index == 1)
-                                    <img src="/assets/ranking/icons8-2nd-place-medal-emoji-32.png" alt="2º Lugar">
-                                    @elseif($index == 2)
-                                    <img src="/assets/ranking/icons8-3rd-place-medal-emoji-32.png" alt="3º Lugar">
-                                    @else
-                                    <span>{{ $index + 1 }}º</span>
-                                    @endif
+                        <a href="{{ route('admin.results.show', ['id' => $work->id]) }}" class="text-decoration-none"> <!--Deixa o card clicavel-->
+                            <div class="card shadow-sm">
+                                <div class="card-body text-center">
+                                    <div>
+                                        @if($index == 0)
+                                        <img src="/assets/ranking/icons8-1st-place-medal-emoji-32.png" alt="1º Lugar">
+                                        @elseif($index == 1)
+                                        <img src="/assets/ranking/icons8-2nd-place-medal-emoji-32.png" alt="2º Lugar">
+                                        @elseif($index == 2)
+                                        <img src="/assets/ranking/icons8-3rd-place-medal-emoji-32.png" alt="3º Lugar">
+                                        @else
+                                        <span>{{ $index + 1 }}º</span>
+                                        @endif
+                                    </div>
+                                    <h5 class="card-title">{{ $work->overview }}</h5>
+                                    <p class="text-muted small">Protocolo: {{ $work->protocol }} | Curso: {{ $work->course->course_name }}</p>
+                                    <p class="fw-bold">Nota: {{ $work->average_score ? number_format($work->average_score, 2) : 'Sem Avaliação' }}</p>
                                 </div>
-                                <h5 class="card-title">{{ $work->overview }}</h5>
-                                <p class="text-muted small">Protocolo: {{ $work->protocol }} | Curso: {{ $work->course->course_name }}</p>
-                                <p class="fw-bold">Nota: {{ $work->average_score ? number_format($work->average_score, 2) : 'Sem Avaliação' }}</p>
                             </div>
-                        </div>
                     </div>
                 @endforeach
             @endforeach

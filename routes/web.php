@@ -12,6 +12,7 @@ use App\Http\Controllers\EvaluatorController;
 use App\Http\Controllers\EvaluativeModelController;
 use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ResultController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -79,17 +80,8 @@ Route::middleware(['auth', 'user-access:admin'])->group(function () {
     Route::put('/admin/evaluative-models/{evaluativeModel}', [EvaluativeModelController::class, 'update'])->name('evaluative_models.update');
     Route::delete('/admin/evaluative-models/{evaluativeModel}', [EvaluativeModelController::class, 'destroy'])->name('evaluative_models.destroy');
 
-    // Rotas para CRUD de perguntas
-// Rota para criar perguntas
-//Route::get('/questions/create', [QuestionController::class, 'create'])
-  //  ->name('questions.create');
-    // Rota para armazenar as perguntas no banco de dados
-//Route::post('/questions/store', [QuestionController::class, 'store'])
-//->name('questions.store');
 
-//novas rotas para perguntas
-//Route::get('/admin/questions/create', [QuestionController::class, 'create'])->name('questions.create');
-//Route::post('/admin/questions', [QuestionController::class, 'store'])->name('questions.store');
+
 // Rotas para perguntas
 Route::get('/admin/questions', [QuestionController::class, 'index'])->name('questions.index');
 Route::get('/admin/questions/{question}/edit', [QuestionController::class, 'edit'])->name('questions.edit');
@@ -108,6 +100,8 @@ Route::delete('/admin/categories/{category}', [CategoryController::class, 'destr
 
 //rota para resultados
 Route::get('/admin/results', [\App\Http\Controllers\ResultController::class, 'index'])->name('admin.results.index');
+Route::get('/admin/results/{id}', [ResultController::class, 'show'])->name('admin.results.show');
+
 
 
 });
