@@ -55,6 +55,7 @@
                 <th>Curso</th>
                 <th>Categoria</th>
                 <th>Modelo Avaliativo</th>
+                <th>Avaliadores</th>
                 <th>Ações</th>
                 <th>Edição Simpósio</th>
             </tr>
@@ -67,6 +68,12 @@
                     <td>{{ $work->course->course_name }}</td>
                     <td>{{ $work->category->category_name }}</td>
                     <td>{{ $work->evaluative_model->model_name }}</td>
+                    <td>
+                    <!-- Exibindo os avaliadores associados ao trabalho -->
+                    @foreach($work->evaluators as $evaluator)
+                        <span class="badge bg-primary">{{ $evaluator->name }}</span>
+                    @endforeach
+                </td>
                     <td>
                         <!-- Botão de Editar -->
                         <a href="{{ route('admin.edit-work', $work->id) }}" class="btn btn-sm btn-warning">
