@@ -61,8 +61,8 @@ class ResultController extends Controller
     //Estou reutizalndo o metodo para calcular, criar uma função depois para evitar redundancia
     public function show($id)
 {
-    // Carrega o trabalho com as relações necessárias, incluindo os avaliadores
-    $work = Work::with(['evaluations', 'course', 'evaluative_model', 'category', 'evaluators'])->findOrFail($id);
+    // Carrega o trabalho com as relações necessárias, incluindo os avaliadores e avaliações
+    $work = Work::with(['evaluations.evaluator', 'course', 'evaluative_model', 'category'])->findOrFail($id);
 
     // Calcula a nota média para este trabalho
     $totalScore = 0;
@@ -76,9 +76,26 @@ class ResultController extends Controller
 
     $work->average_score = $totalQuestions > 0 ? $totalScore / $totalQuestions : null;
 
-    // Retorna a view com os dados, incluindo os avaliadores
+    // Retorna a view com os dados, incluindo os avaliadores e suas notas
     return view('admin.results.show', compact('work'));
 }
+public function showEvaluatorEvaluation($workId, $evaluatorId)
+{
+    // Carrega o trabalho com as avaliações do avaliador específico
+    $work = Work::with(['evaluations' => function($query) use ($evaluatorId) {
+        $query->where('evaluator_id', $evaluatorId);
+    }])->findOrFail($workId);
+
+    // Verifica se a avaliação existe para este avaliador
+    if ($work->evaluations->isEmpty()) {
+        abort(404, 'Avaliação não encontrada para este avaliador.');
+    }
+
+    $evaluation = $work->evaluations->first(); // Há apenas uma avaliação do avaliador
+
+    return view('admin.results.evaluator-evaluation', compact('work', 'evaluation'));
+}
+
 
 
 }

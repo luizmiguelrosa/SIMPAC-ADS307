@@ -97,4 +97,13 @@ class EvaluatorController extends Controller
 
         return redirect()->route('evaluators.index')->with(['status' => 'success', 'message' => 'Avaliador removido com sucesso!']);
     }
+    // Exibe as avaliações de um avaliador
+    public function show($id)
+    {
+        // Recupera o avaliador e suas avaliações
+        $evaluator = User::with('evaluations.work')->findOrFail($id);
+
+        return view('admin/evaluators.show', compact('evaluator'));
+    }
+
 }

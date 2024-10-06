@@ -101,6 +101,8 @@ Route::delete('/admin/categories/{category}', [CategoryController::class, 'destr
 //rota para resultados
 Route::get('/admin/results', [\App\Http\Controllers\ResultController::class, 'index'])->name('admin.results.index');
 Route::get('/admin/results/{id}', [ResultController::class, 'show'])->name('results.show');
+Route::get('evaluators/{id}', [EvaluatorController::class, 'show'])->name('evaluators.show');
+ //rota pra ver resposta de cada avaliador
 
 
 

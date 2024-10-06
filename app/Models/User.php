@@ -70,7 +70,7 @@ class User extends Authenticatable
     }
     public function evaluations()
     {
-        return $this->hasMany(Evaluation::class);
+        return $this->hasMany(Evaluation::class, 'evaluator_id');
     }
 
 }
