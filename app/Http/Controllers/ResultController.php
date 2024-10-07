@@ -94,7 +94,10 @@ public function showEvaluatorEvaluation($workId, $evaluatorId)
     $evaluation = $work->evaluations->first(); // Há apenas uma avaliação do avaliador
 
     return view('admin.results.evaluator-evaluation', compact('work', 'evaluation'));
+
+    
 }
+
 
 
 

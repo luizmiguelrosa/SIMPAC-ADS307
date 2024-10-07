@@ -13,15 +13,16 @@
             <p><strong>Nota Média:</strong> {{ $work->average_score ? number_format($work->average_score, 2) : 'Sem Avaliação' }}</p>
             <!-- Exibindo os avaliadores associados ao trabalho -->
             <p><strong>Avaliadores:</strong></p>
-            @foreach($work->evaluators as $evaluator)
-              
-                    <span class="badge bg-primary">{{ $evaluator->name }}</span>
-                </a>
-            @endforeach
+                @foreach($work->evaluators as $evaluator)
+                    <a href="{{ route('admin.results.evaluatorEvaluation', ['workId' => $work->id, 'evaluatorId' => $evaluator->id]) }}">
+                        <span class="badge bg-primary">{{ $evaluator->name }}</span>
+                    </a>
+                @endforeach
+
 
         </div>
     </div>
-    <h3>Detalhes do Avaliador: {{ $evaluator->name }}</h3>
+  <!--  <h3>Detalhes do Avaliador: {{ $evaluator->name }}</h3>  quero apagar essa linha, mas preciso entender pq aqui consigo ler pelo menos um nome do avaliador e na outra página não
 <p><strong>Email:</strong> {{ $evaluator->email }}</p>
 
 <h4>Avaliações realizadas</h4>
@@ -48,7 +49,7 @@
             </li>
         @endforeach
     </ul>
-@endif
+@endif -->
 
     <a href="{{ route('admin.results.index') }}" class="btn btn-secondary">Voltar</a> <!-- Botão de voltar para a listagem dos modelos -->
 </div>

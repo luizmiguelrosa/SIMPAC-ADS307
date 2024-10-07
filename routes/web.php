@@ -103,6 +103,7 @@ Route::get('/admin/results', [\App\Http\Controllers\ResultController::class, 'in
 Route::get('/admin/results/{id}', [ResultController::class, 'show'])->name('results.show');
 Route::get('evaluators/{id}', [EvaluatorController::class, 'show'])->name('evaluators.show');
  //rota pra ver resposta de cada avaliador
+ Route::get('admin/results/{workId}/evaluators/{evaluatorId}', [ResultController::class, 'showEvaluatorEvaluation'])->name('admin.results.evaluatorEvaluation');
 
 
 
