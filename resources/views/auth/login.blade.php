@@ -34,7 +34,7 @@
             </div>
 
             <div class="btn-container mt-4">
-                <a href="/home.html" class="btn btn-primary btn-custom fw-bold">VOLTAR</a>
+                <a href="/" class="btn btn-primary btn-custom fw-bold">VOLTAR</a>
                 <button type="submit" class="btn btn-primary btn-custom fw-bold">ENTRAR</button>
             </div>
         </form>

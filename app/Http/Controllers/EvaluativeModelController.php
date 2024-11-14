@@ -29,9 +29,9 @@ class EvaluativeModelController extends Controller
             'model_name' => $request->input('model_name'),
         ]);
 
-        return redirect()->route('questions.create')->with('success', 'Modelo avaliativo criado com sucesso. Agora adicione as perguntas.');
+        return redirect()->route('questions.index')->with('success', 'Modelo avaliativo criado com sucesso. Agora adicione as perguntas.');
     }
-
+    
     public function edit(EvaluativeModel $evaluativeModel)
     {
         return view('admin/evaluative_models.edit', compact('evaluativeModel'));
